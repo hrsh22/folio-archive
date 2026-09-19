@@ -25,7 +25,9 @@ export async function verifiedBytes(
   const url = `${endpoint.replace(/\/$/, "")}/bzz/${snapshot}/${file.path.split("/").map(encodeURIComponent).join("/")}`;
   const response = await fetch(url, {
     cache: "no-store",
-    signal: signal || AbortSignal.timeout(60000),
+    signal: signal
+      ? AbortSignal.any([signal, AbortSignal.timeout(60000)])
+      : AbortSignal.timeout(60000),
   });
   if (!response.ok || !response.body)
     throw new Error(

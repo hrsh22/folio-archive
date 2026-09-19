@@ -8,7 +8,7 @@ Prepared September 19, 2026. Planning baseline: approximately 31 hours until the
 
 Build Problem 1, “Eight hundred winters, one lapsed invoice”: a usable manuscript archive published through a Bee node we operate. Someone receiving one archive address must be able to browse and recover every file without the publisher's application, account, private key, or local catalogue.
 
-The user selected their computer for the initial node. Infrastructure depth is a priority based on participant feedback; that feedback is an informal signal, not a published scoring rule. The published rubric remains the acceptance baseline. No project submission is authorised.
+The user selected their computer for the initial node. Infrastructure depth is a priority based on participant feedback; that feedback is an informal signal, not a published scoring rule. The published rubric remains the acceptance baseline. Submission was not authorised at this planning baseline; the builder subsequently approved it. See the [submission observation](../evidence/submission/loops.json).
 
 Working product name: **Folio**. Naming is provisional. The central demonstration is publish, update at the same address, close the publisher, and recover all files independently.
 

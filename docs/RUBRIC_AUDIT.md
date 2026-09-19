@@ -44,4 +44,4 @@ Every published technical check now has a corresponding implementation and inspe
 
 The keeper is a laptop, as requested. The owner starts it with `npm run keeper:start` and stops it with Ctrl+C. The command reconnects a new temporary tunnel address to Vercel, but does not start at login or prevent sleep. Publishing requires that session, a ready Bee, and a working connection. Public recovery works independently, but storage must remain funded and at least one retrieval endpoint must be available. Continuous hosting and a longer funding horizon are not represented as completed. Mobile reflow and browser observations are recorded precisely in the verification report, separately from tests.
 
-No contest submission has been created or updated.
+Folio was subsequently submitted for Problem 1 with the builder's approval. See the [submission observation](../evidence/submission/loops.json) and [post-submission review and fixes](EVALUATION.md). No official score has been returned.

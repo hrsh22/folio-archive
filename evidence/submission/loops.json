@@ -1,0 +1,15 @@
+{
+  "kind": "contest-submission-observation",
+  "observedAt": "2026-09-19T19:34:09.585Z",
+  "event": "road-to-devcon-v",
+  "problem": "archive-that-outlives-its-host",
+  "submittedThrough": "Problem 1 web form",
+  "webConfirmation": "Saved - resubmit any time before the clock ends.",
+  "projectId": "b89f9c1c-4bfd-4f1a-a3bd-0c02dbb0e0c8",
+  "slug": "road-to-devcon-v-p1-harsh-gupta-6c643",
+  "name": "Folio",
+  "repoUrl": "https://github.com/hrsh22/folio-archive",
+  "demoUrl": "https://folio-archive.vercel.app",
+  "submissionVerifiedBy": "loops project get",
+  "evaluationAvailable": "Free alignment prompt for local code review; no official numeric score returned"
+}

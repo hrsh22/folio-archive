@@ -52,7 +52,7 @@ npm run verify:archive -- \
 
 Use `--endpoint https://YOUR-BEE-ENDPOINT` to choose another endpoint. The independent fallback browser reader can also run with `npm run build:reader && npm run reader` at `http://127.0.0.1:3001`. It has no publisher API or private state dependency; normal visitors use the single hosted app.
 
-Direct HTML navigation through the shared Swarm gateway may require its hash approval. Folio uses raw data retrieval, which was tested; no gateway approval or contest submission has been made.
+Direct HTML navigation through the shared Swarm gateway may require its hash approval. Folio uses raw data retrieval, which was tested; no gateway approval has been requested.
 
 ## Run your keeper
 
@@ -94,6 +94,8 @@ Recovery resolves once, then downloads all files from that immutable snapshot. A
 
 [Live evidence index](evidence/README.md) · [Criterion-by-criterion audit](docs/RUBRIC_AUDIT.md) · [Demo walkthrough](docs/DEMO.md)
 
+Folio is [submitted for Problem 1](evidence/submission/loops.json). The [post-submission alignment review](docs/EVALUATION.md) records the local evaluator findings and fixes; it is not an official score.
+
 The proof page also shows a public, read-only Bee observation (mode, version, peers, and the archive batch’s remaining lifetime) without exposing keeper credentials.
 
 The evidence distinguishes real network observations from automated tests. It includes publication/update receipts, a real storage renewal, recovery with both publisher and Bee stopped, and an authenticated **5 MiB upload/download through Vercel using 2 MiB parts**.
@@ -126,7 +128,7 @@ Tests cover feed restart/empty/conflict/timeout behavior, malformed archives, co
 - An archive stays on its original immutable batch, so renewing it maintains its manifest and feed dependencies. Batch migration is not implemented.
 - Publishing and maintenance need the keeper computer awake and `npm run keeper:start` running. The chosen setup is an on-demand Cloudflare quick tunnel, with automatic reconnection while that command runs. It is not continuous hosting. Public recovery does not depend on that tunnel.
 - The single-owner login uses a random access key and an eight-hour signed, HttpOnly session. Logging out clears the browser cookie; rotating the owner key invalidates all sessions.
-- The tests and audit are our verification, **not an awarded contest score**. The project has not been submitted to Loops.
+- The tests and audit are our verification, **not an awarded contest score**. Folio is submitted to Loops for Problem 1; no official score has been returned.
 
 ## Repository
 

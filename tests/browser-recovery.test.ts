@@ -141,3 +141,53 @@ test("recovery card is self-contained, keeps its public address, and rejects cre
     globalThis.fetch = original;
   }
 });
+
+test("cancelable file retrieval retains its timeout and honors user cancellation", async (t) => {
+  let deadline = new AbortController();
+  const deadlines: number[] = [];
+  t.mock.method(AbortSignal, "timeout", (ms: number) => {
+    deadlines.push(ms);
+    return deadline.signal;
+  });
+  t.mock.method(
+    globalThis,
+    "fetch",
+    async (_url: unknown, init: RequestInit) => {
+      const signal = init.signal!;
+      return new Promise<Response>((_resolve, reject) => {
+        if (signal.aborted) reject(signal.reason);
+        else
+          signal.addEventListener("abort", () => reject(signal.reason), {
+            once: true,
+          });
+      });
+    },
+  );
+  const caller = new AbortController();
+  const request = verifiedBytes(
+    "https://reader.example",
+    resolved.snapshot,
+    file,
+    caller.signal,
+  );
+  void request.catch(() => {});
+  try {
+    assert.deepEqual(deadlines, [60000]);
+    deadline.abort(new DOMException("Timed out", "TimeoutError"));
+    await assert.rejects(request, { name: "TimeoutError" });
+    assert.equal(caller.signal.aborted, false);
+
+    deadline = new AbortController();
+    const cancelled = verifiedBytes(
+      "https://reader.example",
+      resolved.snapshot,
+      file,
+      caller.signal,
+    );
+    caller.abort();
+    await assert.rejects(cancelled, { name: "AbortError" });
+    assert.equal(deadline.signal.aborted, false);
+  } finally {
+    caller.abort();
+  }
+});

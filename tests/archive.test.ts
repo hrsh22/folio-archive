@@ -19,11 +19,18 @@ test("archive paths reject traversal, absolute paths and cross-platform separato
     "files/./x",
   ])
     assert.throws(() => safePath(p));
-  assert.equal(safePath("files/folio \u2014 01.svg"), "files/folio \u2014 01.svg");
+  assert.equal(
+    safePath("files/folio \u2014 01.svg"),
+    "files/folio \u2014 01.svg",
+  );
 });
 test("public address parser accepts stable links and rejects nonreferences", () => {
   const ref = "ab".repeat(32);
   assert.equal(referenceFromInput(`https://example.org/bzz/${ref}/`), ref);
+  assert.equal(
+    referenceFromInput(`https://folio-archive.vercel.app/archive/${ref}`),
+    ref,
+  );
   assert.equal(
     referenceFromInput(`http://127.0.0.1:3001/?archive=${ref}`),
     ref,

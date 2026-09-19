@@ -18,6 +18,7 @@ These are actual observations from **September 19, 2026**, not fixtures or a cla
 | Downloaded a self-contained handoff reader | Extracted only the recovery-card ZIP, served it statically, and retrieved all nine records | [Recovery card](hosting/recovery-card.json) |
 | Opened the simplified recovery card directly | Double-clicked its single HTML file; collection opened automatically; all nine downloaded files independently verified | [Single-file recovery](hosting/single-file-recovery.json) |
 | Started and stopped the keeper on demand | One foreground command reconnected Vercel; a failed keeper restarted; Ctrl+C stopped every owned process and released both local ports | [Keeper lifecycle](hosting/on-demand-keeper.json) |
+| Recovered from a copied Folio link after review | A local HTML reader accepted the hosted collection link and recovered all nine files with the local app and Bee off | [Post-review recovery](hosting/post-review-recovery.json) |
 | Bought immutable postage | Approximately 102.49 MB effective capacity, initially seven days; quote 0.6571043271999488 xBZZ | [Purchase](storage/d892cb32-8716-4d5e-9010-c5c8fc658cc2.json) |
 | Renewed original postage | Observed TTL increased from 604,288 to 1,209,038 seconds; quote 0.6572311629529088 xBZZ | [Renewal](storage/ef65d5fe-c524-4809-a225-8e367e757635.json) |
 | Confirmed renewal on-chain | Successful Gnosis receipt; postage event includes the batch ID | [Transaction receipt](storage/transaction-8a3abaf6.json) |
@@ -64,7 +65,7 @@ For a complete saved copy, use `npm run recover` instead and choose a new `--out
 
 ## Limits of this evidence
 
-- Direct HTML navigation at the shared public gateway currently redirects to a hash-approval page. **The independent reader and raw data retrieval work.** No hash-approval or contest submission was sent.
+- Direct HTML navigation at the shared public gateway currently redirects to a hash-approval page. **The independent reader and raw data retrieval work.** No hash-approval request was sent. The [contest entry was submitted separately](submission/loops.json) with the builder's approval.
 - Storage TTL is an observed estimate, not guaranteed permanence. The third edition includes a post-renewal observation; every reader estimate is still labelled historical.
 - The laptop does not provide continuous service while sleeping or shut down. The offline recovery test establishes retrieval through another endpoint at that moment.
 - Synthetic tests cover corrupt files and feed race/failure cases; they are not presented as live outages deliberately induced on Swarm.
