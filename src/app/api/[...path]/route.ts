@@ -49,7 +49,15 @@ async function handle(request: Request, context: Context) {
       const headers = new Headers({ authorization: `Bearer ${key}` });
       if (request.headers.has("content-type"))
         headers.set("content-type", request.headers.get("content-type")!);
-      const body = mutation ? await limitedBody(request) : undefined;
+      let body: Uint8Array<ArrayBuffer> | undefined;
+      try {
+        body = mutation ? await limitedBody(request) : undefined;
+      } catch {
+        return json(
+          { error: "Request too large. Upload files in 2 MB parts." },
+          413,
+        );
+      }
       const upstream = await fetch(target, {
         method: request.method,
         headers,

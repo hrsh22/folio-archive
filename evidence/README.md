@@ -15,6 +15,7 @@ These are actual observations from **September 19, 2026**, not fixtures or a cla
 | Hosted authentication and chunking | Rejected anonymous/CSRF requests; transferred and checked a 5 MiB file through Vercel in 2 MiB requests | [Hosted API test](hosting/vercel-integration.json) |
 | Hosted browser recovery | A public visitor downloaded a complete ZIP; every contained file was checked again outside the browser | [Hosted browser ZIP](hosting/browser-zip.json) |
 | Repeated recovery after the hosted release | Nine files retrieved with the keeper and Bee stopped and state moved aside | [Hosted-release offline recovery](hosting/offline-recovery.json) |
+| Downloaded a self-contained handoff reader | Extracted only the recovery-card ZIP, served it statically, and retrieved all nine records | [Recovery card](hosting/recovery-card.json) |
 | Bought immutable postage | Approximately 102.49 MB effective capacity, initially seven days; quote 0.6571043271999488 xBZZ | [Purchase](storage/d892cb32-8716-4d5e-9010-c5c8fc658cc2.json) |
 | Renewed original postage | Observed TTL increased from 604,288 to 1,209,038 seconds; quote 0.6572311629529088 xBZZ | [Renewal](storage/ef65d5fe-c524-4809-a225-8e367e757635.json) |
 | Confirmed renewal on-chain | Successful Gnosis receipt; postage event includes the batch ID | [Transaction receipt](storage/transaction-8a3abaf6.json) |

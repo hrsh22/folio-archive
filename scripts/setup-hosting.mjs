@@ -8,7 +8,10 @@ let environment = await readFile(path.join(root, ".env.local"), "utf8").catch(
   () => "",
 );
 for (const name of ["FOLIO_BRIDGE_KEY", "FOLIO_OWNER_KEY"]) {
-  let value = environment.match(new RegExp(`^${name}=(.+)$`, "m"))?.[1];
+  let value = environment
+    .match(new RegExp(`^${name}=(.+)$`, "m"))?.[1]
+    ?.trim()
+    .replace(/^(['"])(.*)\1$/, "$2");
   if (!value) {
     value = randomBytes(32).toString("hex");
     environment += `\n${name}=${value}\n`;

@@ -1,7 +1,7 @@
 {
-  "observedAt": "2026-09-19T11:52:35.570Z",
+  "observedAt": "2026-09-19T11:58:12.515Z",
   "deterministicTests": {
-    "passed": 16,
+    "passed": 18,
     "failed": 0
   },
   "typecheck": "passed",
@@ -31,11 +31,17 @@
     "Brave hosted nine-file recovery with keeper and Bee stopped",
     "Previous edition reads from Swarm",
     "Downloaded independent recovery card",
-    "400% browser zoom reflow: navigation and hero remain readable without horizontal overflow"
+    "400% browser zoom reflow: navigation and hero remain readable without horizontal overflow",
+    "Extracted recovery-card reader independently retrieved all nine records"
   ],
   "limits": [
     "Exact device emulation could not be inspected through browser tooling; zoom reflow is a separate accessibility check.",
-    "A walkthrough is provided; no video recording is claimed.",
-    "GitHub Actions pending the initial repository push."
-  ]
+    "A walkthrough is provided; no video recording is claimed."
+  ],
+  "githubActions": {
+    "sourceCommit": "3e7672d47c0875bd6ca2ebde2d8ca4cddb279190",
+    "conclusion": "success",
+    "url": "https://github.com/hrsh22/folio-archive/actions/runs/35441320529",
+    "note": "Initial release CI; the repository badge and Actions page show checks for subsequent commits."
+  }
 }

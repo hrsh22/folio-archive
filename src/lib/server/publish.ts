@@ -163,6 +163,7 @@ export async function startPublication(draftId: string, batchId: string) {
     );
   const job: PublishJob = {
     id: randomUUID(),
+    startedAt: new Date().toISOString(),
     draftId,
     status: "running",
     step: "Checking your node and storage",

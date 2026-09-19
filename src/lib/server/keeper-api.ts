@@ -118,7 +118,9 @@ async function handle(request: Request, segments: string[]) {
         drafts,
         published,
         session: state.token,
-        jobs: [...state.jobs.values()].slice(-20),
+        jobs: [...state.jobs.values()]
+          .sort((a, b) => (a.startedAt || "").localeCompare(b.startedAt || ""))
+          .slice(-20),
       });
     }
     if (resource === "jobs" && method === "POST" && action === "reconcile")

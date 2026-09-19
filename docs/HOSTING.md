@@ -2,7 +2,7 @@
 
 The public deployment is https://folio-archive.vercel.app. The public reading room runs in the visitor’s browser and retrieves directly from a public Bee endpoint. It can recover while the keeper and its local Bee are stopped.
 
-The keeper page at `/manage` is part of the same Next.js app. In Vercel mode, its API authenticates an owner session, checks origin and CSRF for writes, and proxies narrow application requests over HTTPS to the local app. It does not expose Bee’s API. A separate bridge secret authenticates every request to the keeper. Neither secret is sent in public page props, URLs, browser bundles, evidence, or Git.
+The keeper page at `/manage` is part of the same Next.js app. In Vercel mode, its API authenticates an owner session, checks origin and CSRF for writes, and proxies narrow application requests over HTTPS to the local app. It does not expose Bee’s API. A separate bridge secret authenticates every request to the keeper. Neither secret is sent in public page props, URLs, browser bundles, evidence, or Git. The separate public `/api/preservation` GET endpoint returns only an allowlisted node observation; it accepts no write or proxy target parameters and is cached for 30 seconds.
 
 ## Local setup
 

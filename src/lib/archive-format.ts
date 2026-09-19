@@ -124,6 +124,7 @@ export type NodeStatus = {
 };
 export type PublishJob = {
   id: string;
+  startedAt?: string;
   draftId: string;
   status: "running" | "complete" | "failed";
   step: string;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LivePreservation } from "@/components/live-preservation";
 import { ArrowLeft, ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import offline from "../../../evidence/hosting/offline-recovery.json";
@@ -22,6 +23,7 @@ export default function Proof() {
         Swarm. The collection is synthetic demonstration artwork. Its
         publication, update, renewal, and recovery are real.
       </p>
+      <LivePreservation />
       <section className="proof-metrics">
         <div>
           <strong>3</strong>

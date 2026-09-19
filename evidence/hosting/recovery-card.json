@@ -19,5 +19,11 @@
   },
   "zipSha256": "231aadd597b36beb6da075d8140ecd2dbe1fae9b9adfa7c7ec351e533c4483a9",
   "complete": true,
-  "readerFilesMatchTestedBuild": true
+  "readerFilesMatchTestedBuild": true,
+  "extractedReaderBrowserCheck": {
+    "browser": "Brave",
+    "servedFrom": "project-local extracted ZIP using a static HTTP server",
+    "archiveFilesRetrieved": 9,
+    "publisherApiRequired": false
+  }
 }

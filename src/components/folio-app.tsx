@@ -117,10 +117,13 @@ export function FolioApp() {
     const result = await response.json();
     if (!response.ok) throw new Error(result.error);
     setWorkspace(result);
-    const interrupted = result.jobs
-      ?.slice()
-      .reverse()
-      .find((j: PublishJob) => j.status === "running" || j.status === "failed");
+    const newest = new Map<string, PublishJob>();
+    for (const value of (result.jobs || []).slice().reverse() as PublishJob[]) {
+      if (!newest.has(value.draftId)) newest.set(value.draftId, value);
+    }
+    const interrupted = [...newest.values()].find(
+      (j) => j.status === "running" || j.status === "failed",
+    );
     if (interrupted) setJob((current) => current || interrupted);
   }, []);
   const refreshNode = useCallback(async () => {

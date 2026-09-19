@@ -2,6 +2,8 @@
 
 **An archive beyond its keeper.**
 
+[![Verify Folio](https://github.com/hrsh22/folio-archive/actions/workflows/ci.yml/badge.svg)](https://github.com/hrsh22/folio-archive/actions/workflows/ci.yml)
+
 [Open the live app](https://folio-archive.vercel.app) · [Read the real collection](https://folio-archive.vercel.app/archive/ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5) · [Inspect the proof](https://folio-archive.vercel.app/proof)
 
 Folio is a reading room for collections that should outlive their publisher. Its normal browsing experience discovers an archive’s inventory from **Swarm**. Anyone can preview verified files, read earlier editions, recover a checksummed ZIP, or take a recovery card with an independent reader. The keeper can update the collection at one stable address through an operated, funded **Bee light node**.
@@ -89,6 +91,8 @@ Recovery resolves once, then downloads all files from that immutable snapshot. A
 ## Evidence and checks
 
 [Live evidence index](evidence/README.md) · [Criterion-by-criterion audit](docs/RUBRIC_AUDIT.md) · [Demo walkthrough](docs/DEMO.md)
+
+The proof page also shows a public, read-only Bee observation (mode, version, peers, and the archive batch’s remaining lifetime) without exposing keeper credentials.
 
 The evidence distinguishes real network observations from automated tests. It includes publication/update receipts, a real storage renewal, recovery with both publisher and Bee stopped, and an authenticated **5 MiB upload/download through Vercel using 2 MiB parts**.
 
