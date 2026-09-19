@@ -6,7 +6,7 @@ import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "Folio — An archive beyond its keeper",
+  title: "Folio - An archive beyond its keeper",
   description:
     "Publish, preserve, and independently recover a living archive on Swarm.",
 };

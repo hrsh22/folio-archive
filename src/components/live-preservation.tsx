@@ -65,7 +65,7 @@ export function LivePreservation() {
           </div>
           <div>
             <dt>BEE VERSION</dt>
-            <dd>{status.version?.split("-")[0] || "—"}</dd>
+            <dd>{status.version?.split("-")[0] || "-"}</dd>
           </div>
           <div>
             <dt>CONNECTED PEERS</dt>

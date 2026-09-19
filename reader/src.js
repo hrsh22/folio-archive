@@ -1,10 +1,11 @@
 import { zipSync, strToU8 } from "fflate";
 import { Bee } from "@ethersphere/bee-js";
+import { displayText } from "../src/lib/display-text.ts";
 const $ = (id) => document.getElementById(id);
 let opened;
 const hex = /^[a-f0-9]{64}$/i;
 const status = (message, error = false) => {
-  $("status").textContent = message;
+  $("status").textContent = displayText(message);
   $("status").classList.toggle("error", error);
 };
 function reference(value) {
@@ -114,7 +115,7 @@ function save(bytes, name, type = "application/octet-stream") {
   const url = URL.createObjectURL(new Blob([bytes], { type }));
   const a = document.createElement("a");
   a.href = url;
-  a.download = name;
+  a.download = displayText(name);
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
@@ -150,8 +151,8 @@ async function openArchive(value) {
     if (archive.archiveId !== descriptor.archiveId)
       throw Error("Archive identity mismatch.");
     opened = { root, snapshot: feed.reference, archive, descriptor };
-    $("title").textContent = archive.title;
-    $("description").textContent = archive.description;
+    $("title").textContent = displayText(archive.title);
+    $("description").textContent = displayText(archive.description);
     $("count").textContent =
       `${archive.files.length} FILES · PUBLISHED ${new Date(archive.publishedAt).toLocaleDateString()}`;
     $("storage").textContent =
@@ -172,7 +173,7 @@ async function openArchive(value) {
       if (/^image\/(png|jpeg|webp|gif|svg\+xml)$/.test(file.type)) {
         const img = document.createElement("img");
         img.src = fileUrl(root, feed.reference, file.path);
-        img.alt = file.name;
+        img.alt = displayText(file.name);
         img.loading = "lazy";
         card.append(img);
       } else {
@@ -184,7 +185,7 @@ async function openArchive(value) {
       const info = document.createElement("div");
       info.className = "info";
       const h = document.createElement("h3");
-      h.textContent = file.name;
+      h.textContent = displayText(file.name);
       const meta = document.createElement("p");
       meta.textContent = `${(file.size / 1024).toFixed(1)} KB · ${file.type}`;
       const button = document.createElement("button");

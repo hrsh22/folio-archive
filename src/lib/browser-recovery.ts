@@ -1,4 +1,5 @@
 import { zip } from "fflate";
+import { displayText } from "./display-text";
 import type { ArchiveFile, Descriptor } from "./archive-format";
 import type { resolveArchive } from "./network";
 
@@ -67,7 +68,7 @@ export function download(
   const url = URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type }));
   const a = document.createElement("a");
   a.href = url;
-  a.download = name;
+  a.download = displayText(name);
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
@@ -122,7 +123,7 @@ export async function handoffZip(descriptor: Descriptor, endpoint: string) {
     files[name] = new Uint8Array(await r.arrayBuffer());
   }
   files["READ-ME.txt"] = new TextEncoder().encode(
-    `FOLIO — PUBLIC RECOVERY CARD\n\nStable manifest: ${descriptor.manifestReference}\nOwner: ${descriptor.owner}\nTopic: ${descriptor.topic}\nPublic Bee endpoint: ${endpoint}\n\nThese are public identifiers, not signing keys. Keep this folder somewhere separate from the publisher.\n\nTo recover without the Folio website:\n1. Extract this ZIP.\n2. Serve this folder with any static HTTP server (for example python3 -m http.server 8080).\n3. Open http://localhost:8080 and paste the stable manifest above.\n4. Download the verified archive. The reader discovers its inventory from Swarm.\n\nThe contents remain available only while their postage is funded and the network can retrieve them. Keep an independently verified local copy as well. This recovery kit grants read access; it does not grant the ability to publish new editions.\n`,
+    `FOLIO - PUBLIC RECOVERY CARD\n\nStable manifest: ${descriptor.manifestReference}\nOwner: ${descriptor.owner}\nTopic: ${descriptor.topic}\nPublic Bee endpoint: ${endpoint}\n\nThese are public identifiers, not signing keys. Keep this folder somewhere separate from the publisher.\n\nTo recover without the Folio website:\n1. Extract this ZIP.\n2. Serve this folder with any static HTTP server (for example python3 -m http.server 8080).\n3. Open http://localhost:8080 and paste the stable manifest above.\n4. Download the verified archive. The reader discovers its inventory from Swarm.\n\nThe contents remain available only while their postage is funded and the network can retrieve them. Keep an independently verified local copy as well. This recovery kit grants read access; it does not grant the ability to publish new editions.\n`,
   );
   return zipFiles(files);
 }

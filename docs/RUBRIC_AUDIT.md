@@ -1,4 +1,4 @@
-# Rubric audit — September 19, 2026
+# Rubric audit - September 19, 2026
 
 Reviewed against the signed-in [Problem 1 Test Cases tab](https://www.loops.house/road-to-devcon-v/workspace) and the `loops evaluate` evaluator prompt for **Eight hundred winters, one lapsed invoice**. These weights are published criteria, not awarded marks. No official score or guarantee of winning is claimed.
 
@@ -38,7 +38,7 @@ The previous material gaps were addressed:
 
 ## Assessment and remaining operational limits
 
-Every published technical check now has a corresponding implementation and inspectable evidence. The main presentation risk from the earlier audit—local drafts as the primary reading experience—is resolved. Judges still determine the actual score; a checklist cannot establish subjective marks or continuous availability.
+Every published technical check now has a corresponding implementation and inspectable evidence. The main presentation risk from the earlier audit - local drafts as the primary reading experience - is resolved. Judges still determine the actual score; a checklist cannot establish subjective marks or continuous availability.
 
 The keeper is a laptop, as requested. Its demo tunnel is temporary and publishing requires the computer awake. Public recovery works independently, but storage must remain funded and at least one retrieval endpoint must be available. A stable tunnel/VPS and a longer funding horizon would improve operations; they are not falsely represented as completed here. Mobile reflow and browser observations are recorded precisely in the verification report, separately from tests.
 

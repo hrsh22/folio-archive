@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { displayText } from "@/lib/display-text";
 import { useRouter } from "next/navigation";
 import {
   ArrowDownToLine,
@@ -89,7 +90,7 @@ function VerifiedImage({
     };
   }, [file, endpoint, snapshot]); // The callback only reports completion; it is not a network dependency.
   return url ? (
-    <img className={className} src={url} alt={file.name} />
+    <img className={className} src={url} alt={displayText(file.name)} />
   ) : (
     <div className={`image-placeholder ${className}`}>
       {error ? (
@@ -223,9 +224,9 @@ export function ReadingRoom({ reference }: { reference?: string }) {
     : 0;
   const files =
     archive?.files.filter((f) =>
-      `${f.name} ${f.caption} ${f.source}`
+      displayText(`${f.name} ${f.caption} ${f.source}`)
         .toLowerCase()
-        .includes(query.toLowerCase()),
+        .includes(displayText(query).toLowerCase()),
     ) || [];
 
   return (
@@ -349,7 +350,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
           <div className="reading-empty" role="alert">
             <FolderOpen size={28} />
             <h2>Let’s find that collection.</h2>
-            <p>{error}</p>
+            <p>{displayText(error)}</p>
             <div className="hero-actions">
               <Button onClick={() => setAttempt((v) => v + 1)}>
                 Retry network read
@@ -392,8 +393,8 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                   <span className="collection-tag">
                     ORIGINAL DEMONSTRATION COLLECTION
                   </span>
-                  <h3>{archive.title}</h3>
-                  <p>{archive.description}</p>
+                  <h3>{displayText(archive.title)}</h3>
+                  <p>{displayText(archive.description)}</p>
                   <div className="featured-bottom">
                     <span>
                       {archive.files.length} items <i />{" "}
@@ -415,8 +416,10 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                       ? "FROM THE ARCHIVE’S HISTORY"
                       : "THE LATEST PUBLISHED EDITION"}
                   </p>
-                  <h1>{archive.title}</h1>
-                  <p className="archive-description">{archive.description}</p>
+                  <h1>{displayText(archive.title)}</h1>
+                  <p className="archive-description">
+                    {displayText(archive.description)}
+                  </p>
                   <div className="edition-meta">
                     <span>{archive.files.length} items</span>
                     <i />
@@ -499,7 +502,8 @@ export function ReadingRoom({ reference }: { reference?: string }) {
               {busy && (
                 <div className="recovery-progress" role="status">
                   <span>
-                    <LoaderCircle size={17} className="spin" /> {busy}
+                    <LoaderCircle size={17} className="spin" />{" "}
+                    {displayText(busy)}
                   </span>
                   <Progress value={progress} />
                   {cancel.current && (
@@ -601,9 +605,9 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                     <div className="reading-file-caption">
                       <span>{String(i + 1).padStart(2, "0")}</span>
                       <div>
-                        <h3>{file.name}</h3>
+                        <h3>{displayText(file.name)}</h3>
                         <p>
-                          {file.caption ||
+                          {displayText(file.caption) ||
                             `${formatBytes(file.size)} · ${file.type.split("/").pop()}`}
                         </p>
                       </div>
@@ -678,7 +682,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
       {notice && (
         <div className="toast reader-toast" role="status">
           <ShieldCheck size={18} />
-          <span>{notice}</span>
+          <span>{displayText(notice)}</span>
           <button
             aria-label="Dismiss notification"
             onClick={() => setNotice("")}
@@ -810,7 +814,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
       <Dialog open={!!preview} onOpenChange={() => setPreview(null)}>
         <DialogContent className="preview-dialog">
           <DialogHeader>
-            <DialogTitle>{preview?.name}</DialogTitle>
+            <DialogTitle>{displayText(preview?.name)}</DialogTitle>
             <DialogDescription>
               {preview &&
                 `${formatBytes(preview.size)} · ${preview.type} · retrieved from Swarm`}
@@ -827,7 +831,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                 />
               ) : /^(text\/|application\/json)/.test(preview.type) ? (
                 <pre className="reader-text-preview">
-                  {textPreview || "Retrieving and verifying…"}
+                  {displayText(textPreview) || "Retrieving and verifying…"}
                 </pre>
               ) : (
                 <div className="document-preview">
@@ -853,7 +857,9 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                 <ArrowDownToLine size={16} /> Download verified file
               </Button>
               {preview.source && (
-                <p className="dialog-note">Source: {preview.source}</p>
+                <p className="dialog-note">
+                  Source: {displayText(preview.source)}
+                </p>
               )}
             </>
           )}

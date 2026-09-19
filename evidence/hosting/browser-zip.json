@@ -14,56 +14,56 @@
     "files": [
       {
         "path": "files/d7dd3cce-b2f9-4a91-a492-0a3d819a04a4.svg",
-        "name": "01 — A study in ochre.svg",
+        "name": "01 \u2014 A study in ochre.svg",
         "bytes": 61164,
         "sha256": "16e596dbe7a25b0cded4a8da3bc60e827ead573c7e5b251270e5181b8c9b6533",
         "verified": true
       },
       {
         "path": "files/1eaf3a1f-e2d2-437f-a3b3-eb3f9539adf9.svg",
-        "name": "02 — The indigo folio.svg",
+        "name": "02 \u2014 The indigo folio.svg",
         "bytes": 61164,
         "sha256": "3ffd1c02b762020fc7b0937439de77918144fe6b52c9f14e45e09c016149902e",
         "verified": true
       },
       {
         "path": "files/0455a9b5-c5d9-4831-b759-3d64adc6bd14.svg",
-        "name": "03 — Notes from the valley.svg",
+        "name": "03 \u2014 Notes from the valley.svg",
         "bytes": 61169,
         "sha256": "6411f81bc55c81c99aaa8330273ed54f6592f3f139f69bb529cd65dcab2e92b5",
         "verified": true
       },
       {
         "path": "files/a4a9af29-3cd1-4498-9d81-c1e00b86a8ef.svg",
-        "name": "04 — A field of small things.svg",
+        "name": "04 \u2014 A field of small things.svg",
         "bytes": 61171,
         "sha256": "d56ac3a4fdae5e25406c94954d86825e9d25b02cbacdacb02ba4c0da6d1aa6cb",
         "verified": true
       },
       {
         "path": "files/119522a2-d916-43fa-b385-7283f356f65b.svg",
-        "name": "05 — Fragments, carefully kept.svg",
+        "name": "05 \u2014 Fragments, carefully kept.svg",
         "bytes": 61173,
         "sha256": "e19911ec655c74fbbf8b161460fadc0eda5d8153c251fa9777098b21d1694619",
         "verified": true
       },
       {
         "path": "files/f423ee28-580f-4482-ba24-5e2a23ed2fb7.svg",
-        "name": "06 — The keeper’s index.svg",
+        "name": "06 \u2014 The keeper’s index.svg",
         "bytes": 61168,
         "sha256": "4763862504b5598c7bbbc9c69adcb00dcbb98ba21ebedbbd82b44228fd3966b2",
         "verified": true
       },
       {
         "path": "files/b2af8f6b-0623-4f4c-baf8-e93c0b4a0030.txt",
-        "name": "07 — Keeper’s note.txt",
+        "name": "07 \u2014 Keeper’s note.txt",
         "bytes": 6379,
         "sha256": "24971c4e7394ed1a859185ab671d06fbe248794f9eb9bcd23c2efc20a643e381",
         "verified": true
       },
       {
         "path": "files/480be33b-6c73-406b-8a20-bf922ad626f7.md",
-        "name": "08 — Provenance.md",
+        "name": "08 \u2014 Provenance.md",
         "bytes": 183,
         "sha256": "18cb588eb297d41603e444bdb2c53af08a3b5b1b7c92618b35ec66d7f1dc93d7",
         "verified": true

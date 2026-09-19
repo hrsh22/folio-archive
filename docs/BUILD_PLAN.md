@@ -1,4 +1,4 @@
-**Road to Devcon V — archive build plan**
+**Road to Devcon V - archive build plan**
 
 Implementation update: the user requested Next.js + TypeScript + shadcn/ui and project-local files. The implemented system and actual test results are documented in [README](../README.md) and [evidence](../evidence/README.md). This document retains the planning baseline and goals; its checklist is not a claim that every proposed test or recording has been completed.
 

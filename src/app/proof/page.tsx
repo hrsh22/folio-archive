@@ -108,7 +108,7 @@ export default function Proof() {
         </a>
       </p>
       <section className="proof-limits">
-        <h2>What this proves—and what it takes.</h2>
+        <h2>What this proves - and what it takes.</h2>
         <p>
           The archive was recoverable without its publisher at the recorded
           time. Storage still needs renewal; network availability and gateway

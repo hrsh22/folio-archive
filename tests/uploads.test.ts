@@ -28,7 +28,7 @@ test("a file larger than Vercel's payload limit survives reordered parts, retrie
     bytes.fill(31);
     bytes[bytes.length - 1] = 7;
     const upload = await beginUpload(draft.id, {
-      name: "large original — test.bin",
+      name: "large original \u2014 test.bin",
       type: "application/octet-stream",
       size: bytes.length,
       sha256: hash(bytes),

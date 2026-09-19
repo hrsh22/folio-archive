@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { displayText } from "@/lib/display-text";
 import { download, sha256 } from "@/lib/browser-recovery";
 import { KeeperImage, readKeeperFile } from "./keeper-file";
 import { referenceFromInput, MAX_FILE_BYTES } from "@/lib/archive-format";
@@ -392,7 +393,7 @@ export function FolioApp() {
             {draft && (
               <>
                 <ChevronRight size={12} />
-                <span className="truncate">{draft.title}</span>
+                <span className="truncate">{displayText(draft.title)}</span>
               </>
             )}
           </div>
@@ -688,9 +689,9 @@ export function FolioApp() {
                       {published ? "Published · editing draft" : "Local draft"}
                     </Badge>
                   </div>
-                  <h1>{draft.title}</h1>
+                  <h1>{displayText(draft.title)}</h1>
                   <p>
-                    {draft.description ||
+                    {displayText(draft.description) ||
                       "A collection of things worth keeping."}
                   </p>
                 </div>
@@ -808,13 +809,13 @@ export function FolioApp() {
                     <button
                       className="folio-image"
                       onClick={() => setPreview(file)}
-                      aria-label={`Preview ${file.name}`}
+                      aria-label={`Preview ${displayText(file.name)}`}
                     >
                       {file.type.startsWith("image/") ? (
                         <KeeperImage
                           draftId={draft.id}
                           file={file}
-                          alt={file.name}
+                          alt={displayText(file.name)}
                         />
                       ) : (
                         <FileText size={48} strokeWidth={1} />
@@ -822,8 +823,8 @@ export function FolioApp() {
                       <span>{String(i + 1).padStart(2, "0")}</span>
                     </button>
                     <div className="folio-info">
-                      <h3 title={file.name}>
-                        {file.name.replace(/\.svg$/i, "")}
+                      <h3 title={displayText(file.name)}>
+                        {displayText(file.name).replace(/\.svg$/i, "")}
                       </h3>
                       <div>
                         <span>
@@ -835,7 +836,7 @@ export function FolioApp() {
                         <button
                           className="icon-button"
                           disabled={!!busy}
-                          aria-label={`Remove ${file.name}`}
+                          aria-label={`Remove ${displayText(file.name)}`}
                           onClick={() =>
                             run("Removing file", async () => {
                               await api(
@@ -920,11 +921,11 @@ export function FolioApp() {
                   <div className="node-facts">
                     <div>
                       <span>Version</span>
-                      <strong>{node?.version?.split("-")[0] || "—"}</strong>
+                      <strong>{node?.version?.split("-")[0] || "-"}</strong>
                     </div>
                     <div>
                       <span>Connected peers</span>
-                      <strong>{node?.peers ?? "—"}</strong>
+                      <strong>{node?.peers ?? "-"}</strong>
                     </div>
                     <div>
                       <span>API compatibility</span>
@@ -993,7 +994,7 @@ export function FolioApp() {
                             Lifetime changes with network pricing.{" "}
                             {b.immutable
                               ? "Immutable batch."
-                              : "Mutable batch — unsuitable for this archive."}
+                              : "Mutable batch - unsuitable for this archive."}
                           </p>
                           <Button
                             variant="outline"
@@ -1258,7 +1259,7 @@ export function FolioApp() {
         </main>
         <footer className="app-footer">
           <span>
-            FOLIO <i>—</i> An archive beyond its keeper.
+            FOLIO <i>-</i> An archive beyond its keeper.
           </span>
           <span>
             Made to be recovered <Leaf size={12} />
@@ -1272,7 +1273,7 @@ export function FolioApp() {
           role={notice.error ? "alert" : "status"}
         >
           {notice.error ? <CircleHelp size={17} /> : <Check size={17} />}
-          <span>{notice.text}</span>
+          <span>{displayText(notice.text)}</span>
           <button
             aria-label="Dismiss notification"
             onClick={() => setNotice(null)}
@@ -1284,7 +1285,7 @@ export function FolioApp() {
       {busy && (
         <div className="busy-indicator" role="status">
           <LoaderCircle size={14} className="animate-spin" />
-          {busy}…
+          {displayText(busy)}…
         </div>
       )}
 
@@ -1521,7 +1522,7 @@ export function FolioApp() {
       <Dialog open={!!preview} onOpenChange={() => setPreview(null)}>
         <DialogContent className="preview-dialog">
           <DialogHeader>
-            <DialogTitle>{preview?.name}</DialogTitle>
+            <DialogTitle>{displayText(preview?.name)}</DialogTitle>
             <DialogDescription>
               {preview ? `${formatBytes(preview.size)} · ${preview.type}` : ""}
             </DialogDescription>
@@ -1531,7 +1532,7 @@ export function FolioApp() {
               className="preview-image"
               draftId={draft!.id}
               file={preview}
-              alt={preview.name}
+              alt={displayText(preview.name)}
             />
           ) : (
             <div className="document-preview">

@@ -33,7 +33,7 @@ for (let n = 0; n < names.length; n++) {
   const file = `folio-${n + 1}.svg`;
   await writeFile(`public/samples/${file}`, svg);
   index.push({
-    name: `${String(n + 1).padStart(2, "0")} — ${names[n]}.svg`,
+    name: `${String(n + 1).padStart(2, "0")} - ${names[n]}.svg`,
     file,
   });
 }
