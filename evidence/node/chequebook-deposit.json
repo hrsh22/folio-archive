@@ -1,0 +1,22 @@
+{
+  "kind": "live-chequebook-deposit",
+  "observedAt": "2026-09-19T11:04:36.698Z",
+  "amountBzz": "0.1000000000000000",
+  "transactionHash": "3cd7cba45b3075628e52825c83979b1667fb64ad08a5d8ccf0a47f8f3a76f146",
+  "before": {
+    "availableBalance": {
+      "state": "0"
+    },
+    "totalBalance": {
+      "state": "0"
+    }
+  },
+  "after": {
+    "availableBalance": {
+      "state": "1000000000000000"
+    },
+    "totalBalance": {
+      "state": "1000000000000000"
+    }
+  }
+}

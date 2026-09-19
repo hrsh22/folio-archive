@@ -1,0 +1,23 @@
+{
+  "kind": "downloaded-recovery-card",
+  "observedAt": "2026-09-19T11:52:06.207Z",
+  "origin": "https://folio-archive.vercel.app",
+  "files": [
+    "bootstrap.json",
+    "index.html",
+    "style.css",
+    "app.js",
+    "READ-ME.txt"
+  ],
+  "descriptor": {
+    "format": "folio.archive-address",
+    "version": 1,
+    "archiveId": "77b9a322-61b9-40a1-b7a4-28aa35d6d0fd",
+    "owner": "56dcf5a8d4659968e8e2ecfce56cfb7f4265bfbd",
+    "topic": "58e5cf6ed9d222bc5e8bb4957c2a01e2977967e1c214b1fd0ce10dc01b83f3de",
+    "manifestReference": "ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5"
+  },
+  "zipSha256": "231aadd597b36beb6da075d8140ecd2dbe1fae9b9adfa7c7ec351e533c4483a9",
+  "complete": true,
+  "readerFilesMatchTestedBuild": true
+}

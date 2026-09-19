@@ -1,0 +1,25 @@
+{
+  "kind": "deployed-api-integration",
+  "observedAt": "2026-09-19T11:40:47.413Z",
+  "origin": "https://folio-archive.vercel.app",
+  "checks": [
+    "Anonymous keeper access rejected",
+    "Incorrect keeper key rejected",
+    "Secure HttpOnly keeper session established",
+    "CSRF and foreign-origin mutations rejected",
+    "Hosted app reads the actual local Bee light node",
+    "5 MiB file uploaded and downloaded through Vercel in 2 MiB parts",
+    "Retried part and repeated completion did not duplicate the file",
+    "Logout clears the browser cookie"
+  ],
+  "uploadedBytes": 5242899,
+  "largestRequestBytes": 2097152,
+  "uploadSha256": "d556b130f071c64e87611977811604959b93d2a5aa57ea3576531ba2fc127e90",
+  "node": {
+    "mode": "light",
+    "version": "2.8.2-7e703f49",
+    "peers": 138,
+    "ready": true
+  },
+  "complete": true
+}

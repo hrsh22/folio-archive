@@ -1,0 +1,10 @@
+.runtime/
+.env*
+!.env.example
+.git/
+.next/
+node_modules/
+.agents/
+.claude/
+*.log
+*.tsbuildinfo

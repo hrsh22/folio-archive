@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-09-19T11:52:35.570Z",
+  "deterministicTests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "buildOutputCredentialScan": {
+    "filesChecked": 257,
+    "knownCredentials": 5,
+    "matches": 0,
+    "privateRuntimeTraces": 0
+  },
+  "stableAddressAcrossPublications": 3,
+  "latestCliRecoveryFiles": 9,
+  "latestHostedBrowserRecoveryFiles": 9,
+  "hostedChunkTransferBytes": 5242899,
+  "browserChecks": [
+    "Chrome local public reading room and verified image preview",
+    "Brave hosted public reading room",
+    "Brave hosted verified ZIP and independent checksum inspection",
+    "Brave hosted nine-file recovery with keeper and Bee stopped",
+    "Previous edition reads from Swarm",
+    "Downloaded independent recovery card",
+    "400% browser zoom reflow: navigation and hero remain readable without horizontal overflow"
+  ],
+  "limits": [
+    "Exact device emulation could not be inspected through browser tooling; zoom reflow is a separate accessibility check.",
+    "A walkthrough is provided; no video recording is claimed.",
+    "GitHub Actions pending the initial repository push."
+  ]
+}

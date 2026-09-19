@@ -1,0 +1,16 @@
+{
+  "kind": "live-node-observation",
+  "observedAt": "2026-09-19T11:07:30.226Z",
+  "version": "2.8.2-7e703f49",
+  "apiVersion": "8.1.1",
+  "mode": "light",
+  "ethereum": "0xcbd751094539a35fe771df339ec4c1fe12279ff7",
+  "overlay": "22c5d4341e3dc458de73b4d500025ac0433e259990a79bf9245a4a79b6a96741",
+  "chequebook": "0x3666e9ccc5b92a5a02c294b179f3df866629c3a8",
+  "chainId": 100,
+  "bzzBalancePlur": "2462686217601024",
+  "nativeBalanceWei": "9999999961921237",
+  "cacheCapacityChunks": 250000,
+  "connectedPeers": 138,
+  "ready": true
+}

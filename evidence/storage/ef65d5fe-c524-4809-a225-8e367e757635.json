@@ -1,0 +1,32 @@
+{
+  "kind": "live-storage-operation",
+  "action": "renew",
+  "observedAt": "2026-09-19T11:01:37.875Z",
+  "batchId": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+  "quotedBzz": "0.6572311629529088",
+  "before": [
+    {
+      "id": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+      "label": "Folio archive",
+      "usable": true,
+      "immutable": true,
+      "remainingSeconds": 604288,
+      "capacity": 102490000,
+      "remainingBytes": 76867500,
+      "usage": 0.25
+    }
+  ],
+  "after": [
+    {
+      "id": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+      "label": "Folio archive",
+      "usable": true,
+      "immutable": true,
+      "remainingSeconds": 1209038,
+      "capacity": 102490000,
+      "remainingBytes": 76867500,
+      "usage": 0.25
+    }
+  ],
+  "transactionReceiptFile": "transaction-8a3abaf6.json"
+}

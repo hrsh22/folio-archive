@@ -1,0 +1,9 @@
+.runtime/
+.next/
+node_modules/
+public/reader/
+public/samples/
+evidence/
+.agents/
+.claude/
+package-lock.json

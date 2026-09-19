@@ -1,0 +1,20 @@
+{
+  "kind": "live-storage-operation",
+  "action": "buy",
+  "observedAt": "2026-09-19T10:55:30.595Z",
+  "batchId": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+  "quotedBzz": "0.6571043271999488",
+  "before": [],
+  "after": [
+    {
+      "id": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+      "label": "Folio archive",
+      "usable": true,
+      "immutable": true,
+      "remainingSeconds": 604613,
+      "capacity": 102490000,
+      "remainingBytes": 102490000,
+      "usage": 0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "keeper-restart-verification",
+  "observedAt": "2026-09-19T11:51:32.370Z",
+  "jobId": "8b989dc7-b78c-473e-84ad-bc2139e4ff9d",
+  "restoredStatus": "complete",
+  "snapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+  "fileCount": 9,
+  "node": {
+    "ready": true,
+    "mode": "light",
+    "version": "2.8.2-7e703f49",
+    "peers": 138,
+    "batches": [
+      {
+        "id": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+        "label": "Folio archive",
+        "usable": true,
+        "immutable": true,
+        "remainingSeconds": 1204928,
+        "capacity": 102490000,
+        "remainingBytes": 76867500,
+        "usage": 0.25
+      }
+    ]
+  },
+  "complete": true
+}

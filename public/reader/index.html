@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Folio — Independent reader</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./">▥ <strong>folio</strong></a
+      ><span>INDEPENDENT ARCHIVE READER</span>
+    </header>
+    <main>
+      <p class="eyebrow">KNOWLEDGE, WITHOUT A KEEPER</p>
+      <h1>An address is<br />all you need.</h1>
+      <p class="intro">
+        Open a collection directly from Swarm. Read its story, explore every
+        folio, and bring a complete, verified copy home.
+      </p>
+      <form id="open-form">
+        <label for="address">Archive address</label>
+        <div class="input-row">
+          <input
+            id="address"
+            required
+            placeholder="Paste a Swarm archive link or reference"
+            autocomplete="off"
+          /><button type="submit" id="open">Open archive ↗</button>
+        </div>
+        <details>
+          <summary>Choose a retrieval endpoint</summary>
+          <label for="endpoint">Bee API or public read gateway</label
+          ><input
+            id="endpoint"
+            value="https://api.gateway.ethswarm.org"
+            type="url"
+            required
+          />
+          <p>
+            Your browser reads directly from this endpoint. No publisher account
+            is needed.
+          </p>
+        </details>
+      </form>
+      <div id="status" role="status" aria-live="polite">
+        Ready to open an archive.
+      </div>
+      <section id="archive" hidden>
+        <div class="collection-heading">
+          <div>
+            <p class="eyebrow" id="count"></p>
+            <h2 id="title"></h2>
+            <p id="description"></p>
+          </div>
+          <button id="recover">Recover entire archive ↓</button>
+        </div>
+        <p id="storage" class="storage"></p>
+        <div id="files" class="grid"></div>
+        <details>
+          <summary>Public archive details</summary>
+          <pre id="technical"></pre>
+        </details>
+      </section>
+      <footer>
+        This reader works independently of the Folio publisher. The inventory
+        and files are retrieved from Swarm. Storage remains dependent on paid
+        postage.
+      </footer>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
