@@ -27,6 +27,7 @@ The previous material gaps were addressed:
 - Keeper authentication and the bridge protect publishing and payment routes. A real 5 MiB transfer passed through Vercel in 2 MiB parts. Publishing executes on the persistent keeper and can survive a browser disconnect; durable state supports explicit reconciliation after a process restart.
 - Storage estimates remain qualified and observed. The UI and documentation explain renewal, offline keepers, and what a recovery card can and cannot do.
 - The proof page and repository evidence let a reader inspect or repeat the key claims without receiving a private credential.
+- The recovery card now includes a single HTML file with its reader, styles, and public archive address inside. An actual browser opened it directly from disk and recovered all nine files; every file was checked again against the inventory. No local server was required.
 
 ## Evidence to inspect first
 
@@ -35,11 +36,12 @@ The previous material gaps were addressed:
 3. [Initial offline recovery](../evidence/recovery/publisher-and-bee-offline.json), plus the later hosted/offline records in `evidence/hosting/`.
 4. [Real renewal](../evidence/storage/ef65d5fe-c524-4809-a225-8e367e757635.json) and its [Gnosis receipt](../evidence/storage/transaction-8a3abaf6.json).
 5. [Deployed API integration](../evidence/hosting/vercel-integration.json), [hosted browser ZIP](../evidence/hosting/browser-zip.json), and deterministic failure tests in `tests/`.
+6. [Single-file recovery card](../evidence/hosting/single-file-recovery.json), opened as a local HTML file and independently checksum-verified after download.
 
 ## Assessment and remaining operational limits
 
 Every published technical check now has a corresponding implementation and inspectable evidence. The main presentation risk from the earlier audit - local drafts as the primary reading experience - is resolved. Judges still determine the actual score; a checklist cannot establish subjective marks or continuous availability.
 
-The keeper is a laptop, as requested. Its demo tunnel is temporary and publishing requires the computer awake. Public recovery works independently, but storage must remain funded and at least one retrieval endpoint must be available. A stable tunnel/VPS and a longer funding horizon would improve operations; they are not falsely represented as completed here. Mobile reflow and browser observations are recorded precisely in the verification report, separately from tests.
+The keeper is a laptop, as requested. The owner starts it with `npm run keeper:start` and stops it with Ctrl+C. The command reconnects a new temporary tunnel address to Vercel, but does not start at login or prevent sleep. Publishing requires that session, a ready Bee, and a working connection. Public recovery works independently, but storage must remain funded and at least one retrieval endpoint must be available. Continuous hosting and a longer funding horizon are not represented as completed. Mobile reflow and browser observations are recorded precisely in the verification report, separately from tests.
 
 No contest submission has been created or updated.

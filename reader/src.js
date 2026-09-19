@@ -271,10 +271,18 @@ $("recover").onclick = async () => {
   }
 };
 const params = new URLSearchParams(location.search);
+const saved = JSON.parse($("folio-recovery-config")?.textContent || "null");
+if (saved) {
+  $("endpoint").value = endpoint(saved.endpoint);
+  $("recovery-note").hidden = false;
+}
 if (params.get("endpoint")) $("endpoint").value = params.get("endpoint");
 if (params.get("archive")) {
   $("address").value = params.get("archive");
   openArchive(params.get("archive"));
+} else if (saved?.descriptor?.manifestReference) {
+  $("address").value = reference(saved.descriptor.manifestReference);
+  openArchive($("address").value);
 } else if (location.pathname.includes("/bzz/")) {
   const match = location.pathname.match(/\/bzz\/([a-f0-9]{64})/i);
   if (match) {

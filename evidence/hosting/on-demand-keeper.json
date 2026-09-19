@@ -1,0 +1,48 @@
+{
+  "kind": "on-demand-keeper-lifecycle",
+  "observedAt": "2026-09-19T19:18:36.898Z",
+  "startCommand": "npm run keeper:start",
+  "startup": "foreground",
+  "loginServiceRemoved": true,
+  "sleepPrevention": false,
+  "duplicateStartRejected": true,
+  "keeperRestart": {
+    "trigger": "SIGTERM to owned Next.js child",
+    "restarted": true,
+    "beeUnchanged": true,
+    "tunnelUnchanged": true,
+    "healthResponse": 200,
+    "testedWithProcessGroupShutdown": true
+  },
+  "complete": true,
+  "connection": {
+    "automaticVercelUpdate": true,
+    "connectedAt": "2026-09-19T19:18:51.421Z",
+    "publicObservation": {
+      "online": true,
+      "ready": true,
+      "mode": "light",
+      "version": "2.8.2-7e703f49",
+      "peers": 138,
+      "remainingSeconds": 1171275,
+      "observedAt": "2026-09-19T19:19:07.281Z"
+    }
+  },
+  "shutdown": {
+    "trigger": "Ctrl+C in the foreground terminal",
+    "observedAt": "2026-09-19T19:19:29.554Z",
+    "allOwnedProcessesExited": true,
+    "remainingOwnedProcesses": 0,
+    "ports": [
+      {
+        "port": 3000,
+        "reachable": false
+      },
+      {
+        "port": 1633,
+        "reachable": false
+      }
+    ],
+    "lockRemoved": true
+  }
+}

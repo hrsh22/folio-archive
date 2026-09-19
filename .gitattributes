@@ -1,2 +1,3 @@
 # esbuild output contains intentional whitespace inside dependency string literals.
 public/reader/app.js -whitespace linguist-generated=true
+public/reader/standalone.html -whitespace linguist-generated=true

@@ -1,6 +1,6 @@
 {
   "kind": "deployed-api-integration",
-  "observedAt": "2026-09-19T11:40:47.413Z",
+  "observedAt": "2026-09-19T19:19:12.125Z",
   "origin": "https://folio-archive.vercel.app",
   "checks": [
     "Anonymous keeper access rejected",

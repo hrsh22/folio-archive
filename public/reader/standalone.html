@@ -1,4 +1,325 @@
-"use strict";(()=>{var Wk=Object.create;var Jl=Object.defineProperty;var Xk=Object.getOwnPropertyDescriptor;var Yk=Object.getOwnPropertyNames;var Qk=Object.getPrototypeOf,eI=Object.prototype.hasOwnProperty;var kt=(e,t)=>()=>{try{return t||e((t={exports:{}}).exports,t),t.exports}catch(n){throw t=0,n}},qt=(e,t)=>{for(var n in t)Jl(e,n,{get:t[n],enumerable:!0})},tI=(e,t,n,i)=>{if(t&&typeof t=="object"||typeof t=="function")for(let r of Yk(t))!eI.call(e,r)&&r!==n&&Jl(e,r,{get:()=>t[r],enumerable:!(i=Xk(t,r))||i.enumerable});return e};var Ja=(e,t,n)=>(n=e!=null?Wk(Qk(e)):{},tI(t||!e||!e.__esModule?Jl(n,"default",{value:e,enumerable:!0}):n,e));var k$=kt(F=>{"use strict";var Nf;Object.defineProperty(F,"__esModule",{value:!0}),F.Vector=F.Cache=F.Assertions=F.Strings=F.Types=F.Objects=F.Dates=F.Promises=F.Numbers=F.System=F.Arrays=F.Random=F.Elliptic=F.Binary=F.Lock=F.Solver=F.RollingValueProvider=F.TrieRouter=F.AsyncQueue=F.PubSubChannel=F.FixedPointNumber=F.MerkleTree=F.Chunk=F.Uint8ArrayWriter=F.Uint8ArrayReader=F.AsyncLazy=F.Lazy=F.Optional=void 0;async function Uf(e){return new Promise((t,n)=>e.then(n,t))}async function T6(e){return Uf(Promise.all(e.map(Uf)))}async function A6(e,t=1){let n=i$(e,t),i=[],r=n.map(async o=>{for(let a of o)i.push(await a())});return await Promise.all(r),i}async function Es(e){return new Promise(t=>setTimeout(()=>{t(!0)},e))}function od(e,t=Math.random){for(let n=e.length-1;n>0;n--){let i=Math.floor(t()*(n+1)),r=e[n];e[n]=e[i],e[i]=r}return e}function B6(e){if(e.length===1)return e[0];throw Error(`Expected exactly one element, actual: ${e.length}`)}function D6(e){return e.length===1?e[0]:null}function O6(e){return e.length>0?e[0]:null}function P6(e){if(!e.length)throw Error("Received empty array");return e[0]}function R6(e,t){let n=[];for(let i=0;i<e;i++)n.push(t(i));return n}function N6(e){let t=[];for(let n=0;n<e[0].length;n++){t.push([]);for(let i=0;i<e.length;i++)t[n].push(e[i][n])}return t}function U6(e,t,n){let i=[];for(let r=0;r<e;r++){i.push([]);for(let o=0;o<t;o++)i[r].push(n)}return i}function C6(e,t,n,i){if(n<0||i<0||i+t[0].length>e[0].length||n+t.length>e.length)return!1;for(let r=0;r<t.length;r++)for(let o=0;o<t[r].length;o++)if(t[r][o]!==void 0&&e[n+r][i+o]!==t[r][o])return!1;return!0}function d0(e,t,n=Math.random){return od(I0(0,e.length-1),n).slice(0,t)}function j6(e,t){return e.map(n=>n[t])}function V6(e){let t=e,n=3405648695,i=3735928559;return function(){return t+=n,n^=t<<7,t*=i,i^=t<<13,t^=n^i,(t>>>0)/4294967296}}function Cf(e,t,n=Math.random){return Math.floor(n()*(t-e+1))+e}function L6(e,t,n=Math.random){return n()*(t-e)+e}function F6(){return Math.random()*2-1}function M6(e,t,n){return t>=e.x&&t<e.x+e.width&&n>=e.y&&n<e.y+e.height}function Z6(e,t,n,i=Math.random){let r,o;do r=Cf(0,e-1,i),o=Cf(0,t-1,i);while(n&&M6(n,r,o));return[r,o]}function G6(e,t=Math.random){let n=Math.floor(e),i=e-n;return p0(i,t)?n+1:n}function p0(e,t=Math.random){return t()<e}function ad(e,t=Math.random){return e[Math.floor(e.length*t())]}function H6(e,t,n=Math.random){if(t>e.length)throw new Error(`Count (${t}) is greater than array length (${e.length})`);return d0(e,t,n).map(i=>e[i])}function q6(e,t,n,i=Math.random){if(t>e.length)throw new Error(`Count (${t}) is greater than array length (${e.length})`);let r=[];for(;r.length<t;){let o=ad(e,i);r.some(a=>n(a,o))||r.push(o)}return r}function K6(e,t,n,i,r,o=Math.random){let a=e.filter(c=>c!==t&&c!==n),s=[];for(t!==null&&s.push(t);a.length&&s.length<i;){let c=F.Random.intBetween(0,a.length-1,o);r(a[c],s)&&s.push(a[c]),a.splice(c,1)}return od(s,o),{values:s,indexOfGuaranteed:t!==null?s.indexOf(t):-1}}function No(e){if(!e.length)throw Error("Received empty array");return e[e.length-1]}function m0(e,t,n){return n(t.reduce((i,r)=>r(i),e))}function J6(e,t){return n=>m0(n,e,t)}function W6(e,t,n){if(n===void 0&&(n=Math.random()),e.length!==t.length)throw new Error("Array length mismatch");let i=t.reduce((o,a)=>o+a,0),r=n*i;for(let o=0;o<e.length-1;o++)if(i-=t[o],r>=i)return e[o];return No(e)}function X6(e,t,n=Math.random){let i=t.map(o=>n()*o),r=[];for(let o=0;o<e.length;o++)r.push([e[o],i[o]]);return r.sort((o,a)=>a[1]-o[1]).map(o=>o[0])}function Pn(e,t){if(e==null)return null;let n=t.split("."),i=e;for(let r of n){if(i[r]===null||i[r]===void 0)return null;i=i[r]}return i}function On(e,t,n){let i=t.split(/\.|\[/),r=e;for(let o=0;o<i.length;o++){let a=i[o],s=o<i.length-1&&i[o+1].includes("]"),c=a.includes("]")?a.replace(/\[|\]/g,""):a;if(o===i.length-1)return r[c]=n,n;wr(r[c])||(s?r[c]=[]:r[c]={}),r=r[c]}return n}function Y6(e,t,n=1){let i=Pn(e,t)||0;return On(e,t,i+n),i}function Q6(e,t,n){return Pn(e,t)||On(e,t,n)}function eS(e,t){let n=ld(t,"."),i=S0(t,".");if(!n||!i)return;let r=Pn(e,n);r&&delete r[i]}function tS(e,t,n){let i=Pn(e,t);if(!i)throw new Error("Key '"+t+"' does not exist.");return On(e,t,n),i}function rS(e,t,n){for(let i of t){let r=Pn(e,i);if(r)return r}if(n){let i=Object.values(e);if(i.length)return i[0]}return null}async function nS(e,t,n){for(;;){try{await e()}catch(i){n&&n("Error in forever",i)}await Es(t)}}function iS(e,t){e();let n=setInterval(()=>{e()},t);return()=>clearInterval(n)}function oS(){let e=globalThis.process;return e?e.browser===!0?"browser":"node":"browser"}async function aS(e,t,n,i,r,o){let a=null;for(let s=0;s<=t;s++)try{return await e()}catch(c){if(a=c,s===t)break;let u=n+(i-n)*(s/(t-1));r&&r("Error in withRetries, retrying",{attempt:s+1,allowedFailures:t,delayMillis:u,error:c}),o&&o(),await Es(u)}throw a}function sS(e){return e/1024/1024}function cS(e,t=1024){return e>=t*t*t*t?(e/t/t/t/t).toFixed(3)+" TB":e>=t*t*t?(e/t/t/t).toFixed(3)+" GB":e>=t*t?(e/t/t).toFixed(3)+" MB":e>=t?(e/t).toFixed(3)+" KB":e+" B"}function uS(e){let t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e.toLowerCase());if(!t)throw new Error("Invalid hex color: "+e);return[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]}function lS(e){return"#"+e.map(t=>t.toString(16).padStart(2,"0")).join("")}function fS(e,t,n,i){let r=e*Math.PI/180,o=n*Math.PI/180,a=(n-e)*Math.PI/180,s=(i-t)*Math.PI/180,c=Math.sin(a/2)*Math.sin(a/2)+Math.cos(r)*Math.cos(o)*Math.sin(s/2)*Math.sin(s/2);return 6371e3*(2*Math.atan2(Math.sqrt(c),Math.sqrt(1-c)))}function ys(e,t){return Math.round(e/t)*t}function dS(e){return e>1e3?(e/1e3).toFixed(0)+" km":e>=500?ys(e,100)+" m":e>=100?ys(e,50)+" m":ys(e,10)+" m"}function pS(e){return e*(e+1)/2}function mS(e){let t=e.match(/-?\d+(\.\d+)?/);if(!t)throw Error("No float found in "+e);return parseFloat(t[0])}function hS(e,t,n=Math.random){let i=e*t,r=Math.sqrt(e*t*(1-t)),o=(n()+n()+n()+n()+n()+n()-3)*Math.SQRT2,a=Math.round(i+r*o);return Math.max(0,Math.min(e,a))}function gS(e,t){if(!e.includes("."))return e;if(parseFloat(e)===0)return"0";let[n,i]=e.split("."),r=n.replace("-",""),o=r.length;if(o>=t)return n;if(r!=="0"){let c=t-o,u=i.slice(0,c);return/[1-9]/.test(u)?`${n}.${u.replace(/0+$/,"")}`:n}let a=i.match(/^0*/)?.[0].length??0,s=t+a;return`${n}.${i.slice(0,s)}`}function wr(e,t=!0){return!e||t&&!sd(e._readableState)||t&&e.constructor&&(e.constructor.isBuffer||e.constructor.name=="AbortController"||e.constructor.name=="AbortSignal"||e.constructor.name=="Uint8Array"||e.constructor.name==="ArrayBuffer"||e.constructor.name==="ReadableStream")?!1:typeof e=="object"}function mi(e){return wr(e)&&!Array.isArray(e)}function h0(e){return Array.isArray(e)&&e.length===0}function vS(e){return mi(e)&&Object.keys(e).length===0}function sd(e){return e===void 0}function Ts(e){return Object.prototype.toString.call(e)==="[object Function]"||Object.prototype.toString.call(e)==="[object AsyncFunction]"}function Xe(e){return Object.prototype.toString.call(e)==="[object String]"}function xr(e){return typeof e=="number"&&isFinite(e)}function g0(e){return e===!0||e===!1}function gi(e){return Object.prototype.toString.call(e)==="[object Date]"}function As(e){return!Xe(e)||e.trim().length===0}function jf(e){return xr(e)&&Number.isInteger(e)&&e>=1}function v0(e){return Xe(e)&&e.match(/^-?\d+$/)!==null}function y0(e){return Xe(e)&&e.match(/^(0x)?[0-9a-f]+$/i)!==null}var yS="!@#$%^&*()_+-=[]{}|;:<>?,./",bS="!@#$%^&*()_+-=[]{}|;:<>?,./".split(""),Vf="abcdefghijklmnopqrstuvwxyz",$S="ABCDEFGHIJKLMNOPQRSTUVWXYZ",wS="1234567890",Lf=Vf+$S+wS,t0=Lf+yS,r0=["\u2014","\\","\u6771","\u4EAC","\u90FD","\u{1D586}","\u{1D587}","\u{1D588}","\u{1F47E}","\u{1F647}","\u{1F481}","\u{1F645}","\u16A0","\u16C7","\u16BB","\u16E6"],n0="0123456789abcdef";function xS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=Vf[Math.floor(t()*Vf.length)];return n}function _S(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=Lf[Math.floor(t()*Lf.length)];return n}function kS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=t0[Math.floor(t()*t0.length)];return n}function IS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=r0[Math.floor(t()*r0.length)];return n}function SS(e,t){let n=new RegExp(`[0-9a-f]{${t}}`,"i"),i=e.match(n);return i?i[0]:null}function zS(e,t,n=bS){let i=z0(e,n);for(let r of i)if(t(r))return r;return null}function ES(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=n0[Math.floor(t()*n0.length)];return n}function TS(e,t){if(!v0(e))throw new TypeError(`Expected integer string${t?.name?` for ${t.name}`:""}, got: `+e);let n=BigInt(e);if(t&&(t.min&&n<t.min||t.max&&n>t.max))throw RangeError(`Expected integer string${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: `+n);return e}function b0(e,t){if(As(e))throw new TypeError(`Expected string${t?.name?` for ${t.name}`:""}, got: `+e);if(t&&(t.min!==void 0&&e.length<t.min||t.max!==void 0&&e.length>t.max))throw RangeError(`Expected string${t?.name?` for ${t.name}`:""} length in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e.length}`);return e}function AS(e,t){if(!y0(e))throw new TypeError(`Expected hex string${t?.name?` for ${t.name}`:""}, got: `+e);if(t?.strictPrefix&&!e.startsWith("0x")&&!e.startsWith("0X"))throw new TypeError(`Expected hex string with 0x prefix${t?.name?` for ${t.name}`:""}, got: `+e);let n=e.replace(/^0x/i,"");if(n.length%2!==0&&!t?.uneven)throw RangeError(`Expected even number of hex digits${t?.name?` for ${t.name}`:""}; got: `+e);if(t&&t.byteLength&&n.length!==t.byteLength*2)throw RangeError(`Expected hex string${t?.name?` for ${t.name}`:""} of byte length ${t.byteLength}; got: `+n);return`0x${n}`}function BS(e,t){if(!b0(e,t).split("").every(n=>n==="_"||Uo(n)))throw new TypeError(`Expected safe string${t?.name?` for ${t.name}`:""}, got: `+e);return e}function i0(e,t){if(t.min!==void 0&&e<t.min||t.max!==void 0&&e>t.max)throw RangeError(`Expected value${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e}`)}function DS(e,t){if(!Ts(e))throw new TypeError(`Expected function${t?.name?` for ${t.name}`:""}, got: `+e);return e}function Do(e,t){if(xr(e))return t&&i0(e,t),e;if(!Xe(e)||!e.match(/^-?\d+(\.\d+)?$/))throw new TypeError(`Expected number${t?.name?` for ${t.name}`:""}, got: `+e);let n=parseFloat(e);return t&&i0(n,t),n}function xs(e,t){return Math.trunc(Do(e,t))}function OS(e,t){if(e==="true")return!0;if(e==="false")return!1;if(!g0(e))throw new TypeError(`Expected boolean${t?.name?` for ${t.name}`:""}, got: `+e);return e}function PS(e,t){if(!gi(e))throw new TypeError(`Expected date${t?.name?` for ${t.name}`:""}, got: `+e);return e}function RS(e){return As(e)?null:e}function NS(e,t){if(!Xe(e))throw new TypeError(`Expected string${t?.name?` for ${t.name}`:""}, got: `+e);return e}function US(e,t){if(jf(e))return e;let n=parseInt(e,10);if(!jf(n))throw new TypeError(`Expected id${t?.name?` for ${t.name}`:""}, got: `+e);return n}function CS(e,t){if(!Xe(e))throw new TypeError(`Expected time${t?.name?` for ${t.name}`:""}, got: `+e);let n=e.split(":");if(n.length!==2)throw new TypeError(`Expected time${t?.name?` for ${t.name}`:""}, got: `+e);let i=parseInt(n[0],10),r=parseInt(n[1],10);if(!xr(i)||!xr(r)||i<0||i>23||r<0||r>59)throw new TypeError(`Expected time, got${t?.name?` for ${t.name}`:""}: `+e);return`${String(i).padStart(2,"0")}:${String(r).padStart(2,"0")}`}function jS(e,t){if(!Array.isArray(e))throw new TypeError(`Expected array${t?.name?` for ${t.name}`:""}, got: `+e);return e}function Bs(e,t){if(!mi(e))throw new TypeError(`Expected object${t?.name?` for ${t.name}`:""}, got: `+e);return e}function VS(e,t){return e===null?null:Bs(e,t)}function LS(e,t){let n=Bs(e,t);for(let i of Object.keys(n))if(!Xe(n[i]))throw new TypeError(`Expected string map${t?.name?` for ${t.name}`:""}, got: `+e);return n}function FS(e,t){let n=Bs(e),i=Object.keys(n),r=Object.values(n);if(!i.every(Xe)||!r.every(xr))throw new TypeError(`Expected numeric dictionary${t?.name?` for ${t.name}`:""}, got: `+e);return n}function $0(e){return Xe(e)&&e.match(/^https?:\/\/.+/)!==null}function MS(e,t){if(!$0(e))throw new TypeError(`Expected url${t?.name?` for ${t.name}`:""}, got: `+e);return e}function w0(e){return typeof e=="bigint"}function x0(e,t){if(!w0(e))throw new TypeError(`Expected bigint${t?.name?` for ${t.name}`:""}, got: `+e);if(t?.min!==void 0&&e<t?.min||t?.max!==void 0&&e>t?.max)throw RangeError(`Expected value${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e}`);return e}function ZS(e,t){return t==null?!0:e(t)}function GS(e,t){return t==null?null:e(t)}function HS(e,t){return t===""?void 0:e(t)}function qS(e,t){return t==null?void 0:e(t)}function _0(e,t){for(let[n,i]of Object.entries(t))if(!i(e[n]))throw TypeError(`${n} in value does not exist or match shape`);for(let n of Object.keys(e))if(!t[n])throw TypeError(`${n} exists in value but not in shape`);return!0}function KS(e,t){return e.every(n=>_0(n,t))}function To(e,t="json",n=0){if(e&&Ts(e.represent)){let i=e.represent();if(Xe(i))return t==="json"&&n===0?JSON.stringify(i):i}if(wr(e,!1)){if(n>1)return"[object Object]";if(t==="json"){if(Array.isArray(e)){let r=e.map(o=>To(o,"json",n+1));return n===0?JSON.stringify(r):r}let i={};e.message&&(i.message=To(e.message,"json",n+1));for(let[r,o]of Object.entries(e))i[r]=To(o,"json",n+1);return n===0?JSON.stringify(i):i}else if(t==="key-value"){let i=Object.keys(e);return e.message&&!i.includes("message")&&i.unshift("message"),i.map(r=>`${r}=${JSON.stringify(To(e[r],"json",n+1))}`).join(" ")}}return sd(e)&&(e="undefined"),n===0?JSON.stringify(e):e}function JS(e,t){if(Xe(e))return e;let n=Object.keys(e);e.message&&!n.includes("message")&&n.push("message");let i=n.map(r=>`${r}: ${e[r]}`).join("; ");return t&&e.stack?i+`
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Folio - Independent reader</title>
+    <style>:root {
+  color-scheme: light;
+  --paper: #f8f6f0;
+  --ink: #252e2a;
+  --muted: #6c746b;
+  --accent: #355b46;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font:
+    15px/1.6 ui-sans-serif,
+    Arial,
+    sans-serif;
+}
+header {
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dedfd5;
+}
+header a {
+  font:
+    36px Georgia,
+    serif;
+  color: var(--ink);
+  text-decoration: none;
+}
+header span,
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: var(--muted);
+}
+main {
+  max-width: 1120px;
+  margin: 70px auto;
+  padding: 0 32px;
+}
+h1 {
+  font:
+    normal clamp(48px, 7vw, 82px)/1.02 Georgia,
+    serif;
+  letter-spacing: -3px;
+  margin: 20px 0;
+}
+h2 {
+  font:
+    normal 38px/1.2 Georgia,
+    serif;
+  margin: 8px 0;
+}
+.intro {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 17px;
+  margin-bottom: 36px;
+}
+form {
+  max-width: 800px;
+  padding: 26px;
+  background: white;
+  border: 1px solid #e1e2d8;
+  border-radius: 12px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d9dcd2;
+  border-radius: 6px;
+  background: #fafaf6;
+  color: var(--ink);
+  font: inherit;
+}
+input:focus {
+  outline: 2px solid #8baa93;
+  outline-offset: 2px;
+}
+button {
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  font:
+    500 13px ui-sans-serif,
+    Arial,
+    sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+details {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 12px;
+}
+details[open] summary {
+  margin-bottom: 16px;
+}
+summary {
+  cursor: pointer;
+}
+#status {
+  margin: 22px 0 40px;
+  padding: 14px 18px;
+  border-left: 3px solid #a7b9a1;
+  background: #eef1e7;
+  overflow-wrap: anywhere;
+}
+.error {
+  border-color: #aa6356 !important;
+  background: #f4e9e4 !important;
+}
+.collection-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+.collection-heading p {
+  max-width: 680px;
+  color: var(--muted);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 25px 0;
+}
+.file {
+  background: white;
+  border: 1px solid #dfdfd5;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.file img {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  background: #eee9de;
+  padding: 10px;
+}
+.file .placeholder {
+  height: 190px;
+  display: grid;
+  place-items: center;
+  background: #eee9de;
+  font:
+    45px Georgia,
+    serif;
+  color: #a9a48f;
+}
+.file .info {
+  padding: 17px;
+}
+.file h3 {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  margin: 0 0 8px;
+}
+.file p {
+  font-size: 11px;
+  color: var(--muted);
+}
+.file button {
+  font-size: 11px;
+  padding: 8px 12px;
+}
+.storage {
+  font-size: 12px;
+  background: #efeee4;
+  padding: 12px 16px;
+  border-radius: 6px;
+}
+pre {
+  overflow: auto;
+  font-size: 11px;
+}
+footer {
+  margin-top: 60px;
+  padding-top: 25px;
+  border-top: 1px solid #dedfd5;
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 700px;
+}
+a {
+  color: var(--accent);
+}
+@media (max-width: 700px) {
+  main {
+    margin-top: 36px;
+    padding: 0 20px;
+  }
+  header {
+    padding: 20px;
+  }
+  header span {
+    font-size: 8px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .input-row,
+  .collection-heading {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  h1 {
+    letter-spacing: -2px;
+  }
+  .file img,
+  .file .placeholder {
+    height: 130px;
+  }
+}
+@media (max-width: 430px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+  </head>
+  <body>
+    <header>
+      <a href="#open-form">▥ <strong>folio</strong></a
+      ><span>INDEPENDENT ARCHIVE READER</span>
+    </header>
+    <main>
+      <p class="eyebrow">KNOWLEDGE, WITHOUT A KEEPER</p>
+      <h1>An address is<br />all you need.</h1>
+      <p class="intro">
+        Open a collection directly from Swarm. Read its story, explore every
+        folio, and bring a complete, verified copy home.
+      </p>
+      <p id="recovery-note" class="storage" hidden>
+        This is your saved recovery card. Your collection opens automatically.
+        Keep this file somewhere safe or share a copy. You only need a browser
+        and an internet connection, even if the Folio website disappears.
+      </p>
+      <form id="open-form">
+        <label for="address">Archive address</label>
+        <div class="input-row">
+          <input
+            id="address"
+            required
+            placeholder="Paste a Swarm archive link or reference"
+            autocomplete="off"
+          /><button type="submit" id="open">Open archive ↗</button>
+        </div>
+        <details>
+          <summary>Choose a retrieval endpoint</summary>
+          <label for="endpoint">Bee API or public read gateway</label
+          ><input
+            id="endpoint"
+            value="https://api.gateway.ethswarm.org"
+            type="url"
+            required
+          />
+          <p>
+            Your browser reads directly from this endpoint. No publisher account
+            is needed.
+          </p>
+        </details>
+      </form>
+      <div id="status" role="status" aria-live="polite">
+        Ready to open an archive.
+      </div>
+      <section id="archive" hidden>
+        <div class="collection-heading">
+          <div>
+            <p class="eyebrow" id="count"></p>
+            <h2 id="title"></h2>
+            <p id="description"></p>
+          </div>
+          <button id="recover">Recover entire archive ↓</button>
+        </div>
+        <p id="storage" class="storage"></p>
+        <div id="files" class="grid"></div>
+        <details>
+          <summary>Public archive details</summary>
+          <pre id="technical"></pre>
+        </details>
+      </section>
+      <footer>
+        This reader works independently of the Folio publisher. The inventory
+        and files are retrieved from Swarm. Storage remains dependent on paid
+        postage.
+      </footer>
+    </main>
+    <script id="folio-recovery-config" type="application/json">
+      null
+    </script>
+    <script>"use strict";(()=>{var Wk=Object.create;var Jl=Object.defineProperty;var Xk=Object.getOwnPropertyDescriptor;var Yk=Object.getOwnPropertyNames;var Qk=Object.getPrototypeOf,eI=Object.prototype.hasOwnProperty;var kt=(e,t)=>()=>{try{return t||e((t={exports:{}}).exports,t),t.exports}catch(n){throw t=0,n}},qt=(e,t)=>{for(var n in t)Jl(e,n,{get:t[n],enumerable:!0})},tI=(e,t,n,i)=>{if(t&&typeof t=="object"||typeof t=="function")for(let r of Yk(t))!eI.call(e,r)&&r!==n&&Jl(e,r,{get:()=>t[r],enumerable:!(i=Xk(t,r))||i.enumerable});return e};var Ja=(e,t,n)=>(n=e!=null?Wk(Qk(e)):{},tI(t||!e||!e.__esModule?Jl(n,"default",{value:e,enumerable:!0}):n,e));var k$=kt(F=>{"use strict";var Nf;Object.defineProperty(F,"__esModule",{value:!0}),F.Vector=F.Cache=F.Assertions=F.Strings=F.Types=F.Objects=F.Dates=F.Promises=F.Numbers=F.System=F.Arrays=F.Random=F.Elliptic=F.Binary=F.Lock=F.Solver=F.RollingValueProvider=F.TrieRouter=F.AsyncQueue=F.PubSubChannel=F.FixedPointNumber=F.MerkleTree=F.Chunk=F.Uint8ArrayWriter=F.Uint8ArrayReader=F.AsyncLazy=F.Lazy=F.Optional=void 0;async function Uf(e){return new Promise((t,n)=>e.then(n,t))}async function T6(e){return Uf(Promise.all(e.map(Uf)))}async function A6(e,t=1){let n=i$(e,t),i=[],r=n.map(async o=>{for(let a of o)i.push(await a())});return await Promise.all(r),i}async function Es(e){return new Promise(t=>setTimeout(()=>{t(!0)},e))}function od(e,t=Math.random){for(let n=e.length-1;n>0;n--){let i=Math.floor(t()*(n+1)),r=e[n];e[n]=e[i],e[i]=r}return e}function B6(e){if(e.length===1)return e[0];throw Error(`Expected exactly one element, actual: ${e.length}`)}function D6(e){return e.length===1?e[0]:null}function O6(e){return e.length>0?e[0]:null}function P6(e){if(!e.length)throw Error("Received empty array");return e[0]}function R6(e,t){let n=[];for(let i=0;i<e;i++)n.push(t(i));return n}function N6(e){let t=[];for(let n=0;n<e[0].length;n++){t.push([]);for(let i=0;i<e.length;i++)t[n].push(e[i][n])}return t}function U6(e,t,n){let i=[];for(let r=0;r<e;r++){i.push([]);for(let o=0;o<t;o++)i[r].push(n)}return i}function C6(e,t,n,i){if(n<0||i<0||i+t[0].length>e[0].length||n+t.length>e.length)return!1;for(let r=0;r<t.length;r++)for(let o=0;o<t[r].length;o++)if(t[r][o]!==void 0&&e[n+r][i+o]!==t[r][o])return!1;return!0}function d0(e,t,n=Math.random){return od(I0(0,e.length-1),n).slice(0,t)}function j6(e,t){return e.map(n=>n[t])}function V6(e){let t=e,n=3405648695,i=3735928559;return function(){return t+=n,n^=t<<7,t*=i,i^=t<<13,t^=n^i,(t>>>0)/4294967296}}function Cf(e,t,n=Math.random){return Math.floor(n()*(t-e+1))+e}function L6(e,t,n=Math.random){return n()*(t-e)+e}function F6(){return Math.random()*2-1}function M6(e,t,n){return t>=e.x&&t<e.x+e.width&&n>=e.y&&n<e.y+e.height}function Z6(e,t,n,i=Math.random){let r,o;do r=Cf(0,e-1,i),o=Cf(0,t-1,i);while(n&&M6(n,r,o));return[r,o]}function G6(e,t=Math.random){let n=Math.floor(e),i=e-n;return p0(i,t)?n+1:n}function p0(e,t=Math.random){return t()<e}function ad(e,t=Math.random){return e[Math.floor(e.length*t())]}function H6(e,t,n=Math.random){if(t>e.length)throw new Error(`Count (${t}) is greater than array length (${e.length})`);return d0(e,t,n).map(i=>e[i])}function q6(e,t,n,i=Math.random){if(t>e.length)throw new Error(`Count (${t}) is greater than array length (${e.length})`);let r=[];for(;r.length<t;){let o=ad(e,i);r.some(a=>n(a,o))||r.push(o)}return r}function K6(e,t,n,i,r,o=Math.random){let a=e.filter(c=>c!==t&&c!==n),s=[];for(t!==null&&s.push(t);a.length&&s.length<i;){let c=F.Random.intBetween(0,a.length-1,o);r(a[c],s)&&s.push(a[c]),a.splice(c,1)}return od(s,o),{values:s,indexOfGuaranteed:t!==null?s.indexOf(t):-1}}function No(e){if(!e.length)throw Error("Received empty array");return e[e.length-1]}function m0(e,t,n){return n(t.reduce((i,r)=>r(i),e))}function J6(e,t){return n=>m0(n,e,t)}function W6(e,t,n){if(n===void 0&&(n=Math.random()),e.length!==t.length)throw new Error("Array length mismatch");let i=t.reduce((o,a)=>o+a,0),r=n*i;for(let o=0;o<e.length-1;o++)if(i-=t[o],r>=i)return e[o];return No(e)}function X6(e,t,n=Math.random){let i=t.map(o=>n()*o),r=[];for(let o=0;o<e.length;o++)r.push([e[o],i[o]]);return r.sort((o,a)=>a[1]-o[1]).map(o=>o[0])}function Pn(e,t){if(e==null)return null;let n=t.split("."),i=e;for(let r of n){if(i[r]===null||i[r]===void 0)return null;i=i[r]}return i}function On(e,t,n){let i=t.split(/\.|\[/),r=e;for(let o=0;o<i.length;o++){let a=i[o],s=o<i.length-1&&i[o+1].includes("]"),c=a.includes("]")?a.replace(/\[|\]/g,""):a;if(o===i.length-1)return r[c]=n,n;wr(r[c])||(s?r[c]=[]:r[c]={}),r=r[c]}return n}function Y6(e,t,n=1){let i=Pn(e,t)||0;return On(e,t,i+n),i}function Q6(e,t,n){return Pn(e,t)||On(e,t,n)}function eS(e,t){let n=ld(t,"."),i=S0(t,".");if(!n||!i)return;let r=Pn(e,n);r&&delete r[i]}function tS(e,t,n){let i=Pn(e,t);if(!i)throw new Error("Key '"+t+"' does not exist.");return On(e,t,n),i}function rS(e,t,n){for(let i of t){let r=Pn(e,i);if(r)return r}if(n){let i=Object.values(e);if(i.length)return i[0]}return null}async function nS(e,t,n){for(;;){try{await e()}catch(i){n&&n("Error in forever",i)}await Es(t)}}function iS(e,t){e();let n=setInterval(()=>{e()},t);return()=>clearInterval(n)}function oS(){let e=globalThis.process;return e?e.browser===!0?"browser":"node":"browser"}async function aS(e,t,n,i,r,o){let a=null;for(let s=0;s<=t;s++)try{return await e()}catch(c){if(a=c,s===t)break;let u=n+(i-n)*(s/(t-1));r&&r("Error in withRetries, retrying",{attempt:s+1,allowedFailures:t,delayMillis:u,error:c}),o&&o(),await Es(u)}throw a}function sS(e){return e/1024/1024}function cS(e,t=1024){return e>=t*t*t*t?(e/t/t/t/t).toFixed(3)+" TB":e>=t*t*t?(e/t/t/t).toFixed(3)+" GB":e>=t*t?(e/t/t).toFixed(3)+" MB":e>=t?(e/t).toFixed(3)+" KB":e+" B"}function uS(e){let t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e.toLowerCase());if(!t)throw new Error("Invalid hex color: "+e);return[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]}function lS(e){return"#"+e.map(t=>t.toString(16).padStart(2,"0")).join("")}function fS(e,t,n,i){let r=e*Math.PI/180,o=n*Math.PI/180,a=(n-e)*Math.PI/180,s=(i-t)*Math.PI/180,c=Math.sin(a/2)*Math.sin(a/2)+Math.cos(r)*Math.cos(o)*Math.sin(s/2)*Math.sin(s/2);return 6371e3*(2*Math.atan2(Math.sqrt(c),Math.sqrt(1-c)))}function ys(e,t){return Math.round(e/t)*t}function dS(e){return e>1e3?(e/1e3).toFixed(0)+" km":e>=500?ys(e,100)+" m":e>=100?ys(e,50)+" m":ys(e,10)+" m"}function pS(e){return e*(e+1)/2}function mS(e){let t=e.match(/-?\d+(\.\d+)?/);if(!t)throw Error("No float found in "+e);return parseFloat(t[0])}function hS(e,t,n=Math.random){let i=e*t,r=Math.sqrt(e*t*(1-t)),o=(n()+n()+n()+n()+n()+n()-3)*Math.SQRT2,a=Math.round(i+r*o);return Math.max(0,Math.min(e,a))}function gS(e,t){if(!e.includes("."))return e;if(parseFloat(e)===0)return"0";let[n,i]=e.split("."),r=n.replace("-",""),o=r.length;if(o>=t)return n;if(r!=="0"){let c=t-o,u=i.slice(0,c);return/[1-9]/.test(u)?`${n}.${u.replace(/0+$/,"")}`:n}let a=i.match(/^0*/)?.[0].length??0,s=t+a;return`${n}.${i.slice(0,s)}`}function wr(e,t=!0){return!e||t&&!sd(e._readableState)||t&&e.constructor&&(e.constructor.isBuffer||e.constructor.name=="AbortController"||e.constructor.name=="AbortSignal"||e.constructor.name=="Uint8Array"||e.constructor.name==="ArrayBuffer"||e.constructor.name==="ReadableStream")?!1:typeof e=="object"}function mi(e){return wr(e)&&!Array.isArray(e)}function h0(e){return Array.isArray(e)&&e.length===0}function vS(e){return mi(e)&&Object.keys(e).length===0}function sd(e){return e===void 0}function Ts(e){return Object.prototype.toString.call(e)==="[object Function]"||Object.prototype.toString.call(e)==="[object AsyncFunction]"}function Xe(e){return Object.prototype.toString.call(e)==="[object String]"}function xr(e){return typeof e=="number"&&isFinite(e)}function g0(e){return e===!0||e===!1}function gi(e){return Object.prototype.toString.call(e)==="[object Date]"}function As(e){return!Xe(e)||e.trim().length===0}function jf(e){return xr(e)&&Number.isInteger(e)&&e>=1}function v0(e){return Xe(e)&&e.match(/^-?\d+$/)!==null}function y0(e){return Xe(e)&&e.match(/^(0x)?[0-9a-f]+$/i)!==null}var yS="!@#$%^&*()_+-=[]{}|;:<>?,./",bS="!@#$%^&*()_+-=[]{}|;:<>?,./".split(""),Vf="abcdefghijklmnopqrstuvwxyz",$S="ABCDEFGHIJKLMNOPQRSTUVWXYZ",wS="1234567890",Lf=Vf+$S+wS,t0=Lf+yS,r0=["\u2014","\\","\u6771","\u4EAC","\u90FD","\u{1D586}","\u{1D587}","\u{1D588}","\u{1F47E}","\u{1F647}","\u{1F481}","\u{1F645}","\u16A0","\u16C7","\u16BB","\u16E6"],n0="0123456789abcdef";function xS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=Vf[Math.floor(t()*Vf.length)];return n}function _S(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=Lf[Math.floor(t()*Lf.length)];return n}function kS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=t0[Math.floor(t()*t0.length)];return n}function IS(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=r0[Math.floor(t()*r0.length)];return n}function SS(e,t){let n=new RegExp(`[0-9a-f]{${t}}`,"i"),i=e.match(n);return i?i[0]:null}function zS(e,t,n=bS){let i=z0(e,n);for(let r of i)if(t(r))return r;return null}function ES(e,t=Math.random){let n="";for(let i=0;i<e;i++)n+=n0[Math.floor(t()*n0.length)];return n}function TS(e,t){if(!v0(e))throw new TypeError(`Expected integer string${t?.name?` for ${t.name}`:""}, got: `+e);let n=BigInt(e);if(t&&(t.min&&n<t.min||t.max&&n>t.max))throw RangeError(`Expected integer string${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: `+n);return e}function b0(e,t){if(As(e))throw new TypeError(`Expected string${t?.name?` for ${t.name}`:""}, got: `+e);if(t&&(t.min!==void 0&&e.length<t.min||t.max!==void 0&&e.length>t.max))throw RangeError(`Expected string${t?.name?` for ${t.name}`:""} length in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e.length}`);return e}function AS(e,t){if(!y0(e))throw new TypeError(`Expected hex string${t?.name?` for ${t.name}`:""}, got: `+e);if(t?.strictPrefix&&!e.startsWith("0x")&&!e.startsWith("0X"))throw new TypeError(`Expected hex string with 0x prefix${t?.name?` for ${t.name}`:""}, got: `+e);let n=e.replace(/^0x/i,"");if(n.length%2!==0&&!t?.uneven)throw RangeError(`Expected even number of hex digits${t?.name?` for ${t.name}`:""}; got: `+e);if(t&&t.byteLength&&n.length!==t.byteLength*2)throw RangeError(`Expected hex string${t?.name?` for ${t.name}`:""} of byte length ${t.byteLength}; got: `+n);return`0x${n}`}function BS(e,t){if(!b0(e,t).split("").every(n=>n==="_"||Uo(n)))throw new TypeError(`Expected safe string${t?.name?` for ${t.name}`:""}, got: `+e);return e}function i0(e,t){if(t.min!==void 0&&e<t.min||t.max!==void 0&&e>t.max)throw RangeError(`Expected value${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e}`)}function DS(e,t){if(!Ts(e))throw new TypeError(`Expected function${t?.name?` for ${t.name}`:""}, got: `+e);return e}function Do(e,t){if(xr(e))return t&&i0(e,t),e;if(!Xe(e)||!e.match(/^-?\d+(\.\d+)?$/))throw new TypeError(`Expected number${t?.name?` for ${t.name}`:""}, got: `+e);let n=parseFloat(e);return t&&i0(n,t),n}function xs(e,t){return Math.trunc(Do(e,t))}function OS(e,t){if(e==="true")return!0;if(e==="false")return!1;if(!g0(e))throw new TypeError(`Expected boolean${t?.name?` for ${t.name}`:""}, got: `+e);return e}function PS(e,t){if(!gi(e))throw new TypeError(`Expected date${t?.name?` for ${t.name}`:""}, got: `+e);return e}function RS(e){return As(e)?null:e}function NS(e,t){if(!Xe(e))throw new TypeError(`Expected string${t?.name?` for ${t.name}`:""}, got: `+e);return e}function US(e,t){if(jf(e))return e;let n=parseInt(e,10);if(!jf(n))throw new TypeError(`Expected id${t?.name?` for ${t.name}`:""}, got: `+e);return n}function CS(e,t){if(!Xe(e))throw new TypeError(`Expected time${t?.name?` for ${t.name}`:""}, got: `+e);let n=e.split(":");if(n.length!==2)throw new TypeError(`Expected time${t?.name?` for ${t.name}`:""}, got: `+e);let i=parseInt(n[0],10),r=parseInt(n[1],10);if(!xr(i)||!xr(r)||i<0||i>23||r<0||r>59)throw new TypeError(`Expected time, got${t?.name?` for ${t.name}`:""}: `+e);return`${String(i).padStart(2,"0")}:${String(r).padStart(2,"0")}`}function jS(e,t){if(!Array.isArray(e))throw new TypeError(`Expected array${t?.name?` for ${t.name}`:""}, got: `+e);return e}function Bs(e,t){if(!mi(e))throw new TypeError(`Expected object${t?.name?` for ${t.name}`:""}, got: `+e);return e}function VS(e,t){return e===null?null:Bs(e,t)}function LS(e,t){let n=Bs(e,t);for(let i of Object.keys(n))if(!Xe(n[i]))throw new TypeError(`Expected string map${t?.name?` for ${t.name}`:""}, got: `+e);return n}function FS(e,t){let n=Bs(e),i=Object.keys(n),r=Object.values(n);if(!i.every(Xe)||!r.every(xr))throw new TypeError(`Expected numeric dictionary${t?.name?` for ${t.name}`:""}, got: `+e);return n}function $0(e){return Xe(e)&&e.match(/^https?:\/\/.+/)!==null}function MS(e,t){if(!$0(e))throw new TypeError(`Expected url${t?.name?` for ${t.name}`:""}, got: `+e);return e}function w0(e){return typeof e=="bigint"}function x0(e,t){if(!w0(e))throw new TypeError(`Expected bigint${t?.name?` for ${t.name}`:""}, got: `+e);if(t?.min!==void 0&&e<t?.min||t?.max!==void 0&&e>t?.max)throw RangeError(`Expected value${t?.name?` for ${t.name}`:""} in range: ${t.min??"-inf"}..${t.max??"inf"}; got: ${e}`);return e}function ZS(e,t){return t==null?!0:e(t)}function GS(e,t){return t==null?null:e(t)}function HS(e,t){return t===""?void 0:e(t)}function qS(e,t){return t==null?void 0:e(t)}function _0(e,t){for(let[n,i]of Object.entries(t))if(!i(e[n]))throw TypeError(`${n} in value does not exist or match shape`);for(let n of Object.keys(e))if(!t[n])throw TypeError(`${n} exists in value but not in shape`);return!0}function KS(e,t){return e.every(n=>_0(n,t))}function To(e,t="json",n=0){if(e&&Ts(e.represent)){let i=e.represent();if(Xe(i))return t==="json"&&n===0?JSON.stringify(i):i}if(wr(e,!1)){if(n>1)return"[object Object]";if(t==="json"){if(Array.isArray(e)){let r=e.map(o=>To(o,"json",n+1));return n===0?JSON.stringify(r):r}let i={};e.message&&(i.message=To(e.message,"json",n+1));for(let[r,o]of Object.entries(e))i[r]=To(o,"json",n+1);return n===0?JSON.stringify(i):i}else if(t==="key-value"){let i=Object.keys(e);return e.message&&!i.includes("message")&&i.unshift("message"),i.map(r=>`${r}=${JSON.stringify(To(e[r],"json",n+1))}`).join(" ")}}return sd(e)&&(e="undefined"),n===0?JSON.stringify(e):e}function JS(e,t){if(Xe(e))return e;let n=Object.keys(e);e.message&&!n.includes("message")&&n.push("message");let i=n.map(r=>`${r}: ${e[r]}`).join("; ");return t&&e.stack?i+`
 `+e.stack:i}function Tn(e,t){if(mi(e)&&mi(t))for(let n in t)mi(t[n])?(e[n]||(e[n]={}),Tn(e[n],t[n])):Array.isArray(t[n])?e[n]=[...t[n]]:(t[n]!==null&&t[n]!==void 0||e[n]===null||e[n]===void 0)&&(e[n]=t[n]);return e}function WS(e,t){let n={};return Tn(n,e),Tn(n,t),n}function XS(e,t,n){let i={};return Tn(i,e),Tn(i,t),Tn(i,n),i}function k0(e,t){let n={};for(let i of e)for(let r of Object.keys(i))n[r]?n[r]=t(n[r],i[r]):n[r]=i[r];return n}function YS(e){return k0(e,(t,n)=>t+n)}function QS(e,t,n){e[t]||(e[t]=[]),e[t].push(n)}function e3(e,t,n){for(e.unshift(t);e.length>n;)e.pop()}function t3(e,t){let n=t%e.length;return n<0&&(n+=e.length),e[n]}function _s(e,t){Array.prototype.push.apply(e,t)}function r3(e,t){Array.prototype.unshift.apply(e,t)}async function n3(e,t){let n=[];for(let i of e)n.push(await t(i));return n}function i3(e,t){let n=[];for(let i=0;i<e.length;i++)n.push(e[i]),i<e.length-1&&(Ts(t)?n.push(t()):n.push(t));return n}function o3(e,t){if(e!==t)throw Error(`Expected [${e}] to equal [${t}]`);return[e,t]}function a3(e){if(e!==!0)throw Error(`Expected [true], got: [${e}]`);return e}function s3(e){if(!e)throw Error(`Expected truthy value, got: [${e}]`);return e}function c3(e){if(e!==!1)throw Error(`Expected [false], got: [${e}]`);return e}function u3(e){if(e)throw Error(`Expected falsy value, got: [${e}]`);return e}function l3(e,t){if(!t.includes(e))throw Error(`Expected any of [${t.join(", ")}], got: [${e}]`);return e}function f3(e,t){for(let n=0;n<e.length;n++){let i=e[n],r=t[n],o=Math.max(0,r.getTime()-Date.now());setTimeout(i,o)}}function d3(e,t,n){return e+(t-e)*n}function p3(e){return e.reduce((t,n)=>t+n,0)}function m3(e){return e.reduce((t,n)=>t+n,0)/e.length}function h3(e){let t=[...e].sort((i,r)=>i-r),n=Math.floor(t.length/2);return t.length%2===0?(t[n]+t[n-1])/2:t[n]}function g3(e,t){return e-(t-1)/2}function I0(e,t){let n=[];for(let i=e;i<=t;i++)n.push(i);return n}function v3(e,t){return t.some(n=>e.includes(n))}function y3(e){return/^[\u4E00-\u9FA5]+$/.test(e)}function cd(e,t=()=>!1){return e.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").split("").map(n=>/[a-z0-9]/.test(n)||t(n)?n:"-").join("").replace(/-+/g,"-").replace(/^-|-$/g,"")}function b3(e){return cd(e).replaceAll("-","")}function $3(e){return Os(e.replace(/([A-Z])/g," $1"))}function w3(e){return e.split("-").map(Os).join(" ")}function x3(e){return T0(e.split("-").map(Os).join(""))}function _3(e,t=", ",n=" and "){return!e||!e.length?"":e.length===1?e[0]:e.length===2?`${e[0]}${n}${e[1]}`:`${e.slice(0,e.length-1).join(t)}${n}${e[e.length-1]}`}function k3(e,t){return t+e.split("").join(t)+t}function I3(e){return cd(e).replace(/-/g,"_").toUpperCase()}function bs(e,t){if(t.length===0)return 0;let n=e.toLowerCase(),i=t.toLowerCase();return e===t?1e4:n.startsWith(i)?1e4-e.length:n.includes(i)?5e3-e.length:new RegExp(".*"+i.split("").join(".*")+".*").test(n)?1e3-e.length:0}function S3(e,t){return e.filter(n=>bs(n,t)).sort((n,i)=>bs(i,t)-bs(n,t))}function z3(e){return e.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}var E3={"&amp;":"&","&quot;":'"',"&apos;":"'","&gt;":">","&lt;":"<"};function T3(e){let t=e.replace(/&#(\d+);/g,(n,i)=>String.fromCharCode(i)).replace(/&#x(\d+);/g,(n,i)=>String.fromCharCode(parseInt(i,16)));for(let[n,i]of Object.entries(E3))t=t.replaceAll(n,i);return t}function ud(e,t){let n=e.indexOf(t);return n===-1?null:e.slice(0,n)}function Ds(e,t){let n=e.indexOf(t);return n===-1?null:e.slice(n+t.length)}function ld(e,t){let n=e.lastIndexOf(t);return n===-1?null:e.slice(0,n)}function S0(e,t){let n=e.lastIndexOf(t);return n===-1?null:e.slice(n+t.length)}function A3(e,t,n){let i=ld(e,n);return i?Ds(i,t):null}function B3(e,t,n){let i=Ds(e,t);return i?ud(i,n):null}function fd(e,t,n=!1){let i=n?e.lastIndexOf(t):e.indexOf(t);return i===-1?n?[null,e]:[e,null]:[e.slice(0,i),e.slice(i+t.length)]}function z0(e,t){let n=[e];for(let i of t)n=n.flatMap(r=>r.split(i));return n.filter(i=>i)}function dd(e){let t=No(e.split(/\\|\//g)),n=t.lastIndexOf(".",t.length-1);return n<=0?"":t.slice(n+1)}function pd(e){let t=No(e.split(/\\|\//g)),n=t.lastIndexOf(".",t.length-1);return n<=0?t:t.slice(0,n)}function D3(e){let[t,n]=e.split("@");t=Oo(t.replaceAll(".","").toLowerCase()).replaceAll(" ","");let[i]=t.split("+");if(!i||!n||n.indexOf(".")===-1||n.indexOf(".")===n.length-1)throw new Error("Invalid email");return n=Oo(n.toLowerCase()).replaceAll(" ",""),`${i}@${n}`}function O3(e){let t=pd(e),n=dd(e);return n?`${t}.${n}`:t}function P3(e){let t=pd(e),n=dd(e);return{basename:t,extension:n,filename:n?`${t}.${n}`:t}}function R3(e,t=Math.random){return e.replace(/\{(.+?)\}/g,(n,i)=>ad(i.split("|"),t))}function E0(e){let t=/\{(.+?)\}/,n=e.match(t);if(!n||!n.index)return[e];let i=n[1].split(","),r=e.slice(0,n.index),o=e.slice(n.index+n[0].length),a=[];for(let s of i){let c=E0(r+s+o);a=a.concat(c)}return a}function Oo(e){return e.split(`
 `).map(t=>t.trim().replace(/\s+/g," ")).filter(t=>t.length>0).join(`
 `)}function Os(e){return e.charAt(0).toUpperCase()+e.slice(1)}function T0(e){return e.charAt(0).toLowerCase()+e.slice(1)}function A0(e){if(!e)return!1;let t=e.charCodeAt(0);return t>=65&&t<=90||t>=97&&t<=122}function B0(e){if(!e)return!1;let t=e.charCodeAt(0);return t>=48&&t<=57}function Uo(e){return A0(e)||B0(e)}var N3=` 
@@ -84,3 +405,6 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
 @noble/curves/esm/secp256k1.js:
   (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
+</script>
+  </body>
+</html>

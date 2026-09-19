@@ -1,10 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { unzipSync } from "fflate";
+import { readFile } from "node:fs/promises";
 import {
   recoveryZip,
   sha256,
   verifiedBytes,
+  handoffZip,
 } from "../src/lib/browser-recovery";
 import type { resolveArchive } from "../src/lib/network";
 const bytes = new TextEncoder().encode("A keeper’s note\n");
@@ -84,6 +86,56 @@ test("browser recovery creates a complete ZIP only after every file verifies fro
     await assert.rejects(
       recoveryZip(resolved, "https://reader.example", () => {}),
       /HTTP 404/,
+    );
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+
+test("recovery card is self-contained, keeps its public address, and rejects credential-bearing endpoints", async () => {
+  const original = globalThis.fetch;
+  const template = await readFile(
+    new URL("../public/reader/standalone.html", import.meta.url),
+    "utf8",
+  );
+  const card = {
+    ...descriptor,
+    archiveId: "77b9a322-61b9-40a1-b7a4-28aa35d6d0fd",
+  };
+  globalThis.fetch = async () => new Response(template);
+  try {
+    const files = unzipSync(await handoffZip(card, "https://reader.example"));
+    assert.deepEqual(Object.keys(files).sort(), [
+      "Open Folio.html",
+      "READ-ME.txt",
+      "bootstrap.json",
+    ]);
+    const html = new TextDecoder().decode(files["Open Folio.html"]);
+    assert.doesNotMatch(html, /<script\b[^>]*\bsrc\s*=/i);
+    assert.doesNotMatch(html, /<link\b[^>]*rel="stylesheet"/i);
+    const config = html.match(
+      /<script id="folio-recovery-config" type="application\/json">([^]*?)<\/script>/,
+    )?.[1];
+    assert.ok(config);
+    assert.deepEqual(JSON.parse(config), {
+      descriptor: card,
+      endpoint: "https://reader.example",
+    });
+    assert.match(
+      new TextDecoder().decode(files["READ-ME.txt"]),
+      /Double-click Open Folio\.html/,
+    );
+    const privateEndpoint = new URL("https://reader.example");
+    privateEndpoint.username = "fixture-user";
+    privateEndpoint.password = "fixture-password";
+    await assert.rejects(
+      handoffZip(card, privateEndpoint.href),
+      /without credentials/,
+    );
+    globalThis.fetch = async () => new Response("<html>incomplete</html>");
+    await assert.rejects(
+      handoffZip(card, "https://reader.example"),
+      /incomplete/,
     );
   } finally {
     globalThis.fetch = original;

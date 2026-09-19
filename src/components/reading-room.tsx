@@ -759,8 +759,9 @@ export function ReadingRoom({ reference }: { reference?: string }) {
             <p className="eyebrow">KEEP THIS SOMEWHERE ELSE</p>
             <DialogTitle>A way back to the story.</DialogTitle>
             <DialogDescription>
-              This public card and independent reader work without this website,
-              the publisher’s database, or its signing keys.
+              Unzip the card and double-click Open Folio.html. Your collection
+              opens automatically in your browser, even if this website
+              disappears.
             </DialogDescription>
           </DialogHeader>
           {resolved && (
@@ -790,7 +791,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                       "application/zip",
                     );
                     setNotice(
-                      "Recovery card downloaded with an independent reader and public identifiers.",
+                      "Recovery card saved. Unzip it, then double-click Open Folio.html.",
                     );
                   })
                 }

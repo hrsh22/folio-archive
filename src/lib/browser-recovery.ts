@@ -1,6 +1,10 @@
 import { zip } from "fflate";
 import { displayText } from "./display-text";
-import type { ArchiveFile, Descriptor } from "./archive-format";
+import {
+  descriptorSchema,
+  type ArchiveFile,
+  type Descriptor,
+} from "./archive-format";
 import type { resolveArchive } from "./network";
 
 export async function sha256(bytes: Uint8Array) {
@@ -114,16 +118,42 @@ export async function recoveryZip(
   return { bytes: await zipFiles(files), report };
 }
 export async function handoffZip(descriptor: Descriptor, endpoint: string) {
+  const card = descriptorSchema.parse(descriptor);
+  const url = new URL(endpoint);
+  if (
+    !["https:", "http:"].includes(url.protocol) ||
+    url.username ||
+    url.password ||
+    url.search ||
+    url.hash
+  )
+    throw new Error("Use a public Bee endpoint without credentials.");
   const files: Record<string, Uint8Array> = {
-    "bootstrap.json": encode(descriptor),
+    "bootstrap.json": encode(card),
   };
-  for (const name of ["index.html", "style.css", "app.js"]) {
-    const r = await fetch(`/reader/${name}`);
-    if (!r.ok) throw new Error("Could not package the independent reader.");
-    files[name] = new Uint8Array(await r.arrayBuffer());
-  }
+  const r = await fetch("/reader/standalone.html");
+  if (!r.ok) throw new Error("Could not package the independent reader.");
+  const template = await r.text();
+  const marker =
+    /<script id="folio-recovery-config" type="application\/json">\s*null\s*<\/script>/;
+  if (!marker.test(template))
+    throw new Error("The recovery reader is incomplete. Please retry.");
+  const config = JSON.stringify({
+    descriptor: card,
+    endpoint: url.href.replace(/\/$/, ""),
+  })
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026");
+  files["Open Folio.html"] = new TextEncoder().encode(
+    template.replace(
+      marker,
+      () =>
+        `<script id="folio-recovery-config" type="application/json">${config}</script>`,
+    ),
+  );
   files["READ-ME.txt"] = new TextEncoder().encode(
-    `FOLIO - PUBLIC RECOVERY CARD\n\nStable manifest: ${descriptor.manifestReference}\nOwner: ${descriptor.owner}\nTopic: ${descriptor.topic}\nPublic Bee endpoint: ${endpoint}\n\nThese are public identifiers, not signing keys. Keep this folder somewhere separate from the publisher.\n\nTo recover without the Folio website:\n1. Extract this ZIP.\n2. Serve this folder with any static HTTP server (for example python3 -m http.server 8080).\n3. Open http://localhost:8080 and paste the stable manifest above.\n4. Download the verified archive. The reader discovers its inventory from Swarm.\n\nThe contents remain available only while their postage is funded and the network can retrieve them. Keep an independently verified local copy as well. This recovery kit grants read access; it does not grant the ability to publish new editions.\n`,
+    `FOLIO - YOUR RECOVERY CARD\n\n1. Extract this ZIP.\n2. Double-click Open Folio.html to open it in a current browser, such as Chrome, Edge, or Firefox.\n3. Your collection opens automatically. Choose Recover entire archive to save a verified copy.\n\nNo installation, terminal, account, or local server is needed. An internet connection and a reachable public Bee endpoint are required. If the endpoint is unavailable, expand Choose a retrieval endpoint and enter another public Bee API.\n\nKeep Open Folio.html on a USB drive, another computer, or with someone you trust. It contains its own reader and the public address below. It does not rely on the Folio website. This card is a way to find the collection, not a backup of the collection's files. Download the verified archive as well.\n\nStable manifest: ${card.manifestReference}\nOwner: ${card.owner}\nTopic: ${card.topic}\nPublic Bee endpoint: ${url.href}\n\nStorage still needs funded postage and network availability. Public identifiers grant read access, not permission to publish new editions. No private keys are included.\n`,
   );
   return zipFiles(files);
 }

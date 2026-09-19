@@ -20,7 +20,9 @@
     "format": "prettier --write src reader scripts tools tests",
     "hosting:setup": "node scripts/setup-hosting.mjs",
     "check:secrets": "node scripts/check-secrets.mjs",
-    "verify:hosting": "node scripts/verify-hosting.mjs"
+    "verify:hosting": "node scripts/verify-hosting.mjs",
+    "keeper:start": "node scripts/keeper-supervisor.mjs",
+    "keeper:status": "node scripts/keeper-supervisor.mjs --status"
   },
   "dependencies": {
     "@ethersphere/bee-js": "13.1.0",

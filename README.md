@@ -15,7 +15,7 @@ Built for Road to Devcon V, Problem 1: **Eight hundred winters, one lapsed invoi
 1. [Open the collection](https://folio-archive.vercel.app/archive/ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5). Its title, inventory, and files are retrieved from a public Swarm endpoint.
 2. Preview a folio or read the keeper’s note. Previews verify the file’s size and SHA-256 first.
 3. Choose **Download verified archive**. The ZIP contains every original byte, `archive.json`, the public descriptor, and a per-file recovery report. Corruption or a missing file prevents a complete ZIP.
-4. Choose **Save its recovery card**. Keep the ZIP somewhere else: it contains the owner, topic, stable manifest, instructions, and an independent static reader that can run after this website disappears.
+4. Choose **Save its recovery card**. Extract the ZIP and double-click **Open Folio.html**. Its self-contained reader opens this collection automatically, even after this website disappears. No installation or local server is needed. Keep the card somewhere else, and download the verified archive too: the card holds the public address, not the collection's files.
 5. Open **Previous edition**. The public address stays the same while immutable snapshots preserve earlier editions.
 
 The folio illustrations are original **synthetic demonstration artwork**, not authentic manuscripts. [Provenance](public/samples/PROVENANCE.md).
@@ -76,6 +76,8 @@ Open **http://127.0.0.1:3000/manage**. The local keeper validates loopback hosts
 
 For a hosted keeper workspace, see [Vercel deployment and the secure local connection](docs/HOSTING.md). A fresh Vercel deployment fails closed until its keeper secrets and connection are configured. Public archive reading remains available.
 
+In the configured keeper checkout, **`npm run keeper:start`** starts Bee, the local app, and the Cloudflare tunnel together. It reconnects the new hostname to Vercel automatically. Keep that terminal open; **Ctrl+C stops everything it started**. Nothing starts at login or prevents sleep. `npm run keeper:status` checks the current session. Do not run the separate Bee/app commands at the same time.
+
 ## How publication works
 
 1. Create a feed manifest and a dedicated archive-signing key. Only the public owner/topic/manifest is shareable.
@@ -122,7 +124,7 @@ Tests cover feed restart/empty/conflict/timeout behavior, malformed archives, co
 - 200 files, 25 MiB per file, 100 MiB per collection. Browser ZIPs use memory; the CLI buffers one bounded file at a time.
 - Collections are public. Private signing keys are needed for future writes, never public recovery. Back up those keys privately; this entry does not implement governance or publisher succession.
 - An archive stays on its original immutable batch, so renewing it maintains its manifest and feed dependencies. Batch migration is not implemented.
-- Publishing and maintenance need the keeper computer awake, Bee running, and its connection available. The demo uses a temporary Cloudflare quick tunnel; a stable named tunnel or VPS is a later operations step. Public recovery does not depend on that tunnel.
+- Publishing and maintenance need the keeper computer awake and `npm run keeper:start` running. The chosen setup is an on-demand Cloudflare quick tunnel, with automatic reconnection while that command runs. It is not continuous hosting. Public recovery does not depend on that tunnel.
 - The single-owner login uses a random access key and an eight-hour signed, HttpOnly session. Logging out clears the browser cookie; rotating the owner key invalidates all sessions.
 - The tests and audit are our verification, **not an awarded contest score**. The project has not been submitted to Loops.
 

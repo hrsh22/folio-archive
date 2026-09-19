@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <a href="./">▥ <strong>folio</strong></a
+      <a href="#open-form">▥ <strong>folio</strong></a
       ><span>INDEPENDENT ARCHIVE READER</span>
     </header>
     <main>
@@ -17,6 +17,11 @@
       <p class="intro">
         Open a collection directly from Swarm. Read its story, explore every
         folio, and bring a complete, verified copy home.
+      </p>
+      <p id="recovery-note" class="storage" hidden>
+        This is your saved recovery card. Your collection opens automatically.
+        Keep this file somewhere safe or share a copy. You only need a browser
+        and an internet connection, even if the Folio website disappears.
       </p>
       <form id="open-form">
         <label for="address">Archive address</label>
@@ -68,6 +73,9 @@
         postage.
       </footer>
     </main>
+    <script id="folio-recovery-config" type="application/json">
+      null
+    </script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
