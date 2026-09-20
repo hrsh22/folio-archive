@@ -1,5 +1,6 @@
 # Folio
 
+[Implementation CI and deployment verification](evidence/release-verification.json)
 [Qualitative review: the 20-point criterion](docs/QUALITATIVE_REVIEW.md) · [Repository evaluation and all eight published checks](docs/REPOSITORY_REVIEW.md) - source paths, tests, committed evidence and reproduction commands.
 
 **An archive beyond its keeper.**

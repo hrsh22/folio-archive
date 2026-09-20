@@ -1,0 +1,20 @@
+{
+  "kind": "implementation-release-verification",
+  "observedAt": "2026-09-20T13:26:53.855563+00:00",
+  "implementationCommit": "2b29480ad34f648762f17637f2ec4f4e27f15df9",
+  "ci": {
+    "run": 35513353752,
+    "url": "https://github.com/hrsh22/folio-archive/actions/runs/35513353752",
+    "conclusion": "success"
+  },
+  "automatedTests": 29,
+  "forkChecks": 0,
+  "deployments": [
+    {
+      "origin": "https://folio-archive.vercel.app",
+      "deploymentId": "dpl_ka4zBiHmNCbrG1grNMjVADhM7TQ7",
+      "state": "READY"
+    }
+  ],
+  "note": "CI and deployments reference the implementation commit above. Subsequent documentation-only commits do not change the deployed application."
+}
