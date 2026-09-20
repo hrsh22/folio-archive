@@ -6,6 +6,7 @@ import {
   type Descriptor,
 } from "./archive-format";
 import type { resolveArchive } from "./network";
+import { recoveryCatalogue } from "./recovery-catalogue";
 
 export async function sha256(bytes: Uint8Array) {
   return Array.from(
@@ -114,9 +115,15 @@ export async function recoveryZip(
     complete: true,
   };
   files["recovery-report.json"] = encode(report);
-  files["READ-ME.txt"] = new TextEncoder().encode(
-    "Folio verified recovery\n\nEvery file was fetched from one immutable Swarm snapshot and checked against its size and SHA-256 checksum. archive.json maps the storage paths in files/ to their original names and descriptions. bootstrap.json holds the public feed address for future editions. No private keys are included.\n",
-  );
+  for (const [path, text] of Object.entries(
+    recoveryCatalogue({
+      archive,
+      descriptor,
+      snapshot,
+      recoveredAt: report.observedAt,
+    }),
+  ))
+    files[path] = new TextEncoder().encode(text);
   return { bytes: await zipFiles(files), report };
 }
 export async function handoffZip(descriptor: Descriptor, endpoint: string) {

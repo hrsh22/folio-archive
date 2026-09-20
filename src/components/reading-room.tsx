@@ -454,7 +454,7 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                         );
                         setComplete(true);
                         setNotice(
-                          `All ${archive.files.length} files verified. Your archive includes a recovery report.`,
+                          `All ${archive.files.length} files verified. Extract the ZIP and double-click "Open archive.html" to read your copy offline.`,
                         );
                       })
                     }

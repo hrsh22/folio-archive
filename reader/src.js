@@ -3,6 +3,7 @@ import { displayText } from "../src/lib/display-text.ts";
 import { referenceFromInput as reference } from "../src/lib/archive-format.ts";
 import { resolveArchive } from "../src/lib/network.ts";
 import { verifiedBytes } from "../src/lib/browser-recovery.ts";
+import { recoveryCatalogue } from "../src/lib/recovery-catalogue.ts";
 const $ = (id) => document.getElementById(id);
 let opened;
 const status = (message, error = false) => {
@@ -145,10 +146,11 @@ $("recover").onclick = async () => {
     zip["bootstrap.json"] = strToU8(
       JSON.stringify(context.descriptor, null, 2),
     );
+    const recoveredAt = new Date().toISOString();
     zip["recovery-report.json"] = strToU8(
       JSON.stringify(
         {
-          observedAt: new Date().toISOString(),
+          observedAt: recoveredAt,
           snapshot: context.snapshot,
           feedIndex: context.feedIndex,
           endpoint: context.root,
@@ -159,13 +161,22 @@ $("recover").onclick = async () => {
         2,
       ),
     );
+    for (const [path, text] of Object.entries(
+      recoveryCatalogue({
+        archive: context.archive,
+        descriptor: context.descriptor,
+        snapshot: context.snapshot,
+        recoveredAt,
+      }),
+    ))
+      zip[path] = strToU8(text);
     save(
       zipSync(zip, { level: 0 }),
       "folio-recovered-archive.zip",
       "application/zip",
     );
     status(
-      `All ${results.length} files recovered and verified. Your ZIP includes the inventory and verification report.`,
+      `All ${results.length} files recovered and verified. Extract the ZIP and double-click "Open archive.html" to read your copy offline.`,
     );
   } catch (e) {
     status(

@@ -4,6 +4,7 @@ import { parseArgs } from "node:util";
 import { randomUUID } from "node:crypto";
 import { recoverArchive } from "../src/lib/recovery";
 import { descriptorSchema, safePath } from "../src/lib/archive-format";
+import { recoveryCatalogue } from "../src/lib/recovery-catalogue";
 
 const { values } = parseArgs({
   options: {
@@ -48,7 +49,10 @@ try {
     values.endpoint!,
     staging
       ? async (file, bytes) => {
-          const destination = path.join(staging!, safePath(file.path));
+          safePath(file.path);
+          // Validate without normalizing the name: inventory and catalogue
+          // links must address the exact original path on every filesystem.
+          const destination = path.join(staging!, file.path);
           await mkdir(path.dirname(destination), { recursive: true });
           await writeFile(destination, bytes, { flag: "wx" });
           console.log(`Verified ${file.name} (${bytes.length} bytes)`);
@@ -71,11 +75,22 @@ try {
       JSON.stringify(result.report, null, 2) + "\n",
       { flag: "wx" },
     );
+    for (const [name, text] of Object.entries(
+      recoveryCatalogue({
+        archive: result.archive,
+        descriptor: result.descriptor,
+        snapshot: result.report.snapshot,
+        recoveredAt: result.report.observedAt,
+      }),
+    ))
+      await writeFile(path.join(staging, name), text, { flag: "wx" });
     await rename(staging, path.join(output, "complete"));
   }
   console.log(JSON.stringify(result.report, null, 2));
   if (staging)
-    console.log(`Complete archive: ${path.join(output, "complete")}`);
+    console.log(
+      `Complete archive: ${path.join(output, "complete")}\nDouble-click "Open archive.html" in that folder to read your copy offline.`,
+    );
 } catch (error) {
   console.error(`Recovery incomplete: ${(error as Error).message}`);
   if (staging)

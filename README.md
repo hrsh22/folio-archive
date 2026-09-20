@@ -1,6 +1,6 @@
 # Folio
 
-[Latest strict Loops rubric review](docs/STRICT_EVALUATION.md) - all eight technical checks, the twenty-point criterion and concrete follow-up findings.
+[Latest strict Loops rubric review](docs/STRICT_EVALUATION.md) - all eight technical checks, the twenty-point criterion and implemented recovery follow-up.
 
 [Implementation CI and deployment verification](evidence/release-verification.json)
 [Qualitative review: the 20-point criterion](docs/QUALITATIVE_REVIEW.md) · [Repository evaluation and all eight published checks](docs/REPOSITORY_REVIEW.md) - source paths, tests, committed evidence and reproduction commands.
@@ -19,7 +19,7 @@ Built for Road to Devcon V, Problem 1: **Eight hundred winters, one lapsed invoi
 
 1. [Open the collection](https://folio-archive.vercel.app/archive/ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5). Its title, inventory, and files are retrieved from a public Swarm endpoint.
 2. Preview a folio or read the keeper’s note. Previews verify the file’s size and SHA-256 first.
-3. Choose **Download verified archive**. The ZIP contains every original byte, `archive.json`, the public descriptor, and a per-file recovery report. Corruption or a missing file prevents a complete ZIP.
+3. Choose **Download verified archive**. Extract the ZIP and open **Open archive.html** for an offline catalogue with reviewed names, descriptions, sources and links to every original file. The ZIP also contains a plain handover guide, `archive.json`, the public descriptor and a per-file recovery report. Corruption or a missing file prevents a complete ZIP.
 4. Choose **Save its recovery card**. Extract the ZIP and double-click **Open Folio.html**. Its self-contained reader opens this collection automatically, even after this website disappears. No installation or local server is needed. Keep the card somewhere else, and download the verified archive too: the card holds the public address, not the collection's files.
 5. Open **Previous edition**. The public address stays the same while immutable snapshots preserve earlier editions.
 
@@ -46,7 +46,9 @@ npm run recover -- \
   --out .runtime/recovered/my-copy
 ```
 
-The new output folder must be inside the project. Success produces `complete/files/`, metadata, and a checksum report. Failure exits nonzero and leaves any partial output labelled incomplete. `archive.json` maps safe storage paths to original filenames.
+The new output folder must be inside the project. Success produces `complete/Open archive.html`, a plain handover guide, `complete/files/`, metadata and a checksum report. Open the HTML catalogue to browse reviewed filenames, descriptions and sources without a network connection. Failure exits nonzero and leaves any partial output labelled incomplete. Original paths and `archive.json` remain unchanged; repeated public names cannot overwrite one another.
+
+The [pure catalogue generator](src/lib/recovery-catalogue.ts) is shared by [browser ZIP recovery](src/lib/browser-recovery.ts), the [standalone reader](reader/src.js) and the [CLI's completed folder](tools/recover.ts). The HTML uses inline styles, escaped text and encoded relative links, with no scripts, remote fonts or network resources. Its guide carries the dated storage observation and institutional handover context. This follow-up was source-reviewed and its reader assets regenerated; test suites and browser checks were not rerun for this change.
 
 For verification without saving files:
 
