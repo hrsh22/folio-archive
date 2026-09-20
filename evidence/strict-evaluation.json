@@ -1,0 +1,38 @@
+{
+  "kind": "strict-source-evaluation",
+  "reviewCompletedAt": "2026-09-20T17:33:08.921330+00:00",
+  "reviewedCommit": "57986074bf62be4e3fd5c52ee60b28bad2f233fd",
+  "repository": "https://github.com/hrsh22/folio-archive",
+  "evaluator": {
+    "command": "loops evaluate --event road-to-devcon-v --problem archive-that-outlives-its-host --format json",
+    "cliVersion": "0.4.0",
+    "exitCode": 0,
+    "responseSavedAt": "2026-09-20T13:30:31.684318+00:00",
+    "responseSha256": "f92b52df537a901fba596cc6ba1e06cabb841bf754c414ed442cdd2847727263",
+    "promptSha256": "6dabfc751d2b9f18e31010263fe0acee761b06058f852461dac38499720d8fdf",
+    "resultType": "problem-specific review prompt"
+  },
+  "review": {
+    "report": "docs/STRICT_EVALUATION.md",
+    "method": "Inspect implementation call paths, committed network evidence and CI against all eight technical checks and the problem-specific qualitative criterion.",
+    "additionalCriterion": "Exact Folio twenty-point paragraph supplied by the builder; applied directly to Folio and as supplementary mirror, usability, publication-choice, recovery and expiry checks for the other two problems.",
+    "assessment": "One recovery-artifact usability improvement; no local-mirror or false-permanence path found.",
+    "officialScore": null,
+    "officialJudgingRequested": false,
+    "submissionChanged": false
+  },
+  "existingValidation": {
+    "ciRun": 35513539930,
+    "url": "https://github.com/hrsh22/folio-archive/actions/runs/35513539930",
+    "headSha": "57986074bf62be4e3fd5c52ee60b28bad2f233fd",
+    "conclusion": "success",
+    "automatedTests": 29,
+    "forkChecks": 0,
+    "reusedExistingRun": true
+  },
+  "evaluationActions": {
+    "applicationSourceModified": false,
+    "newPublicWrites": false,
+    "newFinancialTransactions": false
+  }
+}
