@@ -1,0 +1,23 @@
+{
+  "kind": "local-repository-evaluation",
+  "observedAt": "2026-09-20T08:58:42.237031+00:00",
+  "problem": "archive-that-outlives-its-host",
+  "repository": "https://github.com/hrsh22/folio-archive",
+  "reviewedCommit": "62e0c281d12ca66174c257f2fb3a58a0e957d1ff",
+  "command": "loops evaluate --event road-to-devcon-v --problem archive-that-outlives-its-host --format json",
+  "workingDirectory": "folio",
+  "commandExitCode": 0,
+  "returnedEvaluatorSha256": "f92b52df537a901fba596cc6ba1e06cabb841bf754c414ed442cdd2847727263",
+  "returnedInstructionsNotOfficialScore": true,
+  "publishedTechnicalChecksReviewed": 8,
+  "technicalAssessment": "Each check has a reachable implementation and cited repository evidence; see docs/REPOSITORY_REVIEW.md. This is not a platform verdict.",
+  "automatedChecks": {
+    "tests": 20,
+    "pass": 20,
+    "fail": 0,
+    "typecheck": "passed",
+    "secretScan": "passed"
+  },
+  "officialJudgingAttemptUsed": false,
+  "report": "docs/REPOSITORY_REVIEW.md"
+}

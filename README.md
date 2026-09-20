@@ -1,5 +1,7 @@
 # Folio
 
+[Repository evaluation and all eight published checks](docs/REPOSITORY_REVIEW.md) - source paths, tests, committed evidence and reproduction commands.
+
 **An archive beyond its keeper.**
 
 [![Verify Folio](https://github.com/hrsh22/folio-archive/actions/workflows/ci.yml/badge.svg)](https://github.com/hrsh22/folio-archive/actions/workflows/ci.yml)
@@ -109,16 +111,16 @@ npm run build
 
 Tests cover feed restart/empty/conflict/timeout behavior, malformed archives, corrupt and missing bytes, browser ZIP verification, session tampering/expiry/CSRF, chunk retries and idempotent finalisation, and interrupted-job recovery. CI uses no keys or funded access.
 
-| Published criterion | Implementation and evidence |
-| --- | --- |
-| Stable feed address | [Publisher](src/lib/server/publish.ts), same manifest across receipts |
-| Public owner/topic in tracked file | [Actual descriptor](evidence/archives/77b9a322-61b9-40a1-b7a4-28aa35d6d0fd.json) |
-| Network supplies every next index | [Feed append](src/lib/server/feed-update.ts), [failure tests](tests/feed.test.ts) |
-| Multi-chunk contents uploaded by reference | [Directory upload before feed append](src/lib/server/publish.ts) |
-| Recovery from only public identifiers | [Network reader](src/lib/network.ts), [browser recovery](src/lib/browser-recovery.ts), [CLI](tools/recover.ts) |
-| Actual node-derived lifetime | [Node status](src/lib/server/node-status.ts), [renewal receipt](evidence/storage/ef65d5fe-c524-4809-a225-8e367e757635.json) |
-| Defined empty feed behavior | [404-only first write](src/lib/server/feed-update.ts), caught reader errors |
-| No committed credentials | [.gitignore](.gitignore), [.vercelignore](.vercelignore), [secret checks](scripts/check-secrets.mjs) |
+| Published criterion                        | Implementation and evidence                                                                                                 |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Stable feed address                        | [Publisher](src/lib/server/publish.ts), same manifest across receipts                                                       |
+| Public owner/topic in tracked file         | [Actual descriptor](evidence/archives/77b9a322-61b9-40a1-b7a4-28aa35d6d0fd.json)                                            |
+| Network supplies every next index          | [Feed append](src/lib/server/feed-update.ts), [failure tests](tests/feed.test.ts)                                           |
+| Multi-chunk contents uploaded by reference | [Directory upload before feed append](src/lib/server/publish.ts)                                                            |
+| Recovery from only public identifiers      | [Network reader](src/lib/network.ts), [browser recovery](src/lib/browser-recovery.ts), [CLI](tools/recover.ts)              |
+| Actual node-derived lifetime               | [Node status](src/lib/server/node-status.ts), [renewal receipt](evidence/storage/ef65d5fe-c524-4809-a225-8e367e757635.json) |
+| Defined empty feed behavior                | [404-only first write](src/lib/server/feed-update.ts), caught reader errors                                                 |
+| No committed credentials                   | [.gitignore](.gitignore), [.vercelignore](.vercelignore), [secret checks](scripts/check-secrets.mjs)                        |
 
 ## Honest limits
 
