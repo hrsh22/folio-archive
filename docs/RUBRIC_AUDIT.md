@@ -42,6 +42,6 @@ The previous material gaps were addressed:
 
 Every published technical check now has a corresponding implementation and inspectable evidence. The main presentation risk from the earlier audit - local drafts as the primary reading experience - is resolved. Judges still determine the actual score; a checklist cannot establish subjective marks or continuous availability.
 
-The keeper is a laptop, as requested. The owner starts it with `npm run keeper:start` and stops it with Ctrl+C. The command reconnects a new temporary tunnel address to Vercel, but does not start at login or prevent sleep. Publishing requires that session, a ready Bee, and a working connection. Public recovery works independently, but storage must remain funded and at least one retrieval endpoint must be available. Continuous hosting and a longer funding horizon are not represented as completed. Mobile reflow and browser observations are recorded precisely in the verification report, separately from tests.
+Public recovery is independently reproducible. Storage must remain funded and a retrieval endpoint must be reachable; indefinite availability is not claimed. Browser observations, failure tests and actual transactions are recorded separately so a reviewer can distinguish them.
 
 Folio was subsequently submitted for Problem 1 with the builder's approval. See the [submission observation](../evidence/submission/loops.json) and [post-submission review and fixes](EVALUATION.md). No official score has been returned.

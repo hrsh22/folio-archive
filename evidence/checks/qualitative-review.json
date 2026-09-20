@@ -1,0 +1,31 @@
+{
+  "kind": "qualitative-followup-review",
+  "observedAt": "2026-09-20T13:23:17.513752+00:00",
+  "event": "road-to-devcon-v",
+  "problem": "archive-that-outlives-its-host",
+  "evaluatorCommand": "loops evaluate --event road-to-devcon-v --problem archive-that-outlives-its-host --format json",
+  "evaluatorResponseSha256": "f92b52df537a901fba596cc6ba1e06cabb841bf754c414ed442cdd2847727263",
+  "officialScore": false,
+  "tests": {
+    "passed": 29,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "secretScan": "passed",
+  "productionBuild": "passed",
+  "browserObservations": [
+    "Public edition review lists item metadata",
+    "Path-like filename receives inline error without save",
+    "Valid metadata save returns to review",
+    "Collection-note cancel returns to publication review"
+  ],
+  "livePublication": "qualitative-publication.json",
+  "sourceSha256": {
+    "src/components/file-details-dialog.tsx": "be944f3a7bf62d5a5db0cd81f57a9e2b4b093951810533ffe7aaaef58bde2bdb",
+    "src/components/publication-review.tsx": "4cf0e7c6aa471f1924af3de9750282c9f34cd48f89a54a3524c60759ac0c194e",
+    "src/lib/server/keeper-api.ts": "e1858b339df67a6b8e5061949b5e8c751a196d9718b88a971a38add7fe6bb9c7",
+    "src/lib/server/publish.ts": "46ab93b840140709cd77a2c16f0900e38587323131425468305576d9eddb2953",
+    "src/lib/server/verification-retry.ts": "3a3548f32939a9f1c0066c9b93fe5fa836946075f428b7c89f0a26d3da99e198",
+    "src/lib/browser-recovery.ts": "60f8b34a523775fd3e747ba3f6787cf3f9d5a2a7d40b4eee17be01ae682069ab"
+  }
+}

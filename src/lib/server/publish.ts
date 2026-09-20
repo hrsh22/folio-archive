@@ -28,6 +28,7 @@ import {
 } from "./runtime";
 import { nodeStatus } from "./node-status";
 import { appendReference } from "./feed-update";
+import { retryNetworkVerification } from "./verification-retry";
 
 const jobPath = (id: string) => path.join(RUNTIME, "jobs", `${id}.json`);
 let initialized: Promise<void> | undefined;
@@ -205,9 +206,14 @@ async function verifySnapshot(
       "Verification must use an endpoint independent of the publishing node.",
     );
   const remote = makeBee(VERIFY_URL);
-  for (let attempt = 0; attempt < 4; attempt++) {
-    try {
-      const inventory = await remote.file.download(snapshot, "archive.json");
+  return retryNetworkVerification(
+    async (signal) => {
+      const inventory = await remote.file.download(
+        snapshot,
+        "archive.json",
+        undefined,
+        { signal },
+      );
       const parsed = archiveSchema.parse(inventory.data.toJSON());
       if (JSON.stringify(parsed) !== JSON.stringify(archive))
         throw new Error(
@@ -216,7 +222,12 @@ async function verifySnapshot(
       const results = [];
       for (const [index, file] of archive.files.entries()) {
         job.step = `Verifying file ${index + 1} of ${archive.files.length} through another endpoint`;
-        const result = await remote.file.download(snapshot, file.path);
+        const result = await remote.file.download(
+          snapshot,
+          file.path,
+          undefined,
+          { signal },
+        );
         if (
           result.data.length !== file.size ||
           hash(result.data.toUint8Array()) !== file.sha256
@@ -230,13 +241,11 @@ async function verifySnapshot(
         });
       }
       return results;
-    } catch (error) {
-      if (attempt === 3) throw error;
+    },
+    () => {
       job.step = "Waiting for the archive to become retrievable on the network";
-      await new Promise((resolve) => setTimeout(resolve, 2000 * (attempt + 1)));
-    }
-  }
-  throw new Error("Network verification did not complete.");
+    },
+  );
 }
 async function publish(job: PublishJob, batchId: string) {
   const lock = await publicationLock();

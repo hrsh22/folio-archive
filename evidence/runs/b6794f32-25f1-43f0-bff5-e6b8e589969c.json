@@ -1,0 +1,89 @@
+{
+  "kind": "live-publication",
+  "observedAt": "2026-09-20T13:19:19.627Z",
+  "descriptor": {
+    "format": "folio.archive-address",
+    "version": 1,
+    "archiveId": "77b9a322-61b9-40a1-b7a4-28aa35d6d0fd",
+    "owner": "56dcf5a8d4659968e8e2ecfce56cfb7f4265bfbd",
+    "topic": "58e5cf6ed9d222bc5e8bb4957c2a01e2977967e1c214b1fd0ce10dc01b83f3de",
+    "manifestReference": "ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5"
+  },
+  "snapshot": "6acd411c117d3300a0f690e4f3d880f449a4df5e6e8743e5efdcd9d2b98b907f",
+  "previousSnapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+  "feedIndex": "0000000000000003",
+  "node": {
+    "mode": "light",
+    "version": "2.8.2-7e703f49",
+    "peers": 138,
+    "wallet": "0xcbd751094539a35fe771df339ec4c1fe12279ff7"
+  },
+  "storage": {
+    "id": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+    "label": "Folio archive",
+    "usable": true,
+    "immutable": true,
+    "remainingSeconds": 1178848,
+    "capacity": 102490000,
+    "remainingBytes": 76867500,
+    "usage": 0.25
+  },
+  "verificationEndpoint": "https://api.gateway.ethswarm.org",
+  "files": [
+    {
+      "path": "files/d7dd3cce-b2f9-4a91-a492-0a3d819a04a4.svg",
+      "bytes": 61164,
+      "sha256": "16e596dbe7a25b0cded4a8da3bc60e827ead573c7e5b251270e5181b8c9b6533",
+      "verified": true
+    },
+    {
+      "path": "files/1eaf3a1f-e2d2-437f-a3b3-eb3f9539adf9.svg",
+      "bytes": 61164,
+      "sha256": "3ffd1c02b762020fc7b0937439de77918144fe6b52c9f14e45e09c016149902e",
+      "verified": true
+    },
+    {
+      "path": "files/0455a9b5-c5d9-4831-b759-3d64adc6bd14.svg",
+      "bytes": 61169,
+      "sha256": "6411f81bc55c81c99aaa8330273ed54f6592f3f139f69bb529cd65dcab2e92b5",
+      "verified": true
+    },
+    {
+      "path": "files/a4a9af29-3cd1-4498-9d81-c1e00b86a8ef.svg",
+      "bytes": 61171,
+      "sha256": "d56ac3a4fdae5e25406c94954d86825e9d25b02cbacdacb02ba4c0da6d1aa6cb",
+      "verified": true
+    },
+    {
+      "path": "files/119522a2-d916-43fa-b385-7283f356f65b.svg",
+      "bytes": 61173,
+      "sha256": "e19911ec655c74fbbf8b161460fadc0eda5d8153c251fa9777098b21d1694619",
+      "verified": true
+    },
+    {
+      "path": "files/f423ee28-580f-4482-ba24-5e2a23ed2fb7.svg",
+      "bytes": 61168,
+      "sha256": "4763862504b5598c7bbbc9c69adcb00dcbb98ba21ebedbbd82b44228fd3966b2",
+      "verified": true
+    },
+    {
+      "path": "files/b2af8f6b-0623-4f4c-baf8-e93c0b4a0030.txt",
+      "bytes": 6379,
+      "sha256": "24971c4e7394ed1a859185ab671d06fbe248794f9eb9bcd23c2efc20a643e381",
+      "verified": true
+    },
+    {
+      "path": "files/480be33b-6c73-406b-8a20-bf922ad626f7.md",
+      "bytes": 183,
+      "sha256": "18cb588eb297d41603e444bdb2c53af08a3b5b1b7c92618b35ec66d7f1dc93d7",
+      "verified": true
+    },
+    {
+      "path": "files/3304e819-079c-4419-b8aa-5c2e1bc87014.txt",
+      "bytes": 1234,
+      "sha256": "cf6585c26ee8f0af6224cf7fe9945ca4db139b6213fadd38def29008931a23d6",
+      "verified": true
+    }
+  ],
+  "complete": true
+}

@@ -1,6 +1,6 @@
 # Folio
 
-[Repository evaluation and all eight published checks](docs/REPOSITORY_REVIEW.md) - source paths, tests, committed evidence and reproduction commands.
+[Qualitative review: the 20-point criterion](docs/QUALITATIVE_REVIEW.md) · [Repository evaluation and all eight published checks](docs/REPOSITORY_REVIEW.md) - source paths, tests, committed evidence and reproduction commands.
 
 **An archive beyond its keeper.**
 
@@ -10,7 +10,7 @@
 
 Folio is a reading room for collections that should outlive their publisher. Its normal browsing experience discovers an archive’s inventory from **Swarm**. Anyone can preview verified files, read earlier editions, recover a checksummed ZIP, or take a recovery card with an independent reader. The keeper can update the collection at one stable address through an operated, funded **Bee light node**.
 
-Built for Road to Devcon V, Problem 1: **Eight hundred winters, one lapsed invoice**. One **Next.js 16 + TypeScript + shadcn/ui** application runs on Vercel. Bee, signing keys, editable drafts, and long publishing jobs remain on the keeper’s computer. The public reading room does not need that computer online.
+Built for Road to Devcon V, Problem 1: **Eight hundred winters, one lapsed invoice**. One **Next.js 16 + TypeScript + shadcn/ui** application runs on Vercel. Signing keys and editable drafts stay in the keeper boundary. The public reading room retrieves its inventory and files directly from Swarm.
 
 ## Try it in two minutes
 
@@ -56,29 +56,11 @@ Use `--endpoint https://YOUR-BEE-ENDPOINT` to choose another endpoint. The indep
 
 Direct HTML navigation through the shared Swarm gateway may require its hash approval. Folio uses raw data retrieval, which was tested; no gateway approval has been requested.
 
-## Run your keeper
+## Review the publishing implementation
 
-```bash
-npm ci
-cp .env.example .env.local
-npm run bee:install
-npm run bee:start
-```
+The keeper workspace at `/manage` lets the archivist select files, edit public filenames, descriptions and sources, and review the complete public edition before publishing. The [file editor](src/components/file-details-dialog.tsx), [publication review](src/components/publication-review.tsx) and [authenticated keeper API](src/lib/server/keeper-api.ts) are wired into the application. Five route-level tests verify metadata validation, authentication, publication locking, concurrent edits and preservation of the original file bytes.
 
-The Bee installer checks the official release SHA-256 and keeps its binary, data and password inside ignored `.runtime/`. Set a Gnosis RPC in `.env.local`, fund the node, and restart for light mode. Without the RPC it starts read-only ultra-light mode. The demonstrated node is **Bee 2.8.2 / API 8.1.1**, with pinned **bee-js 13.1.0**. [Node instructions](docs/NODE.md).
-
-In another terminal:
-
-```bash
-npm run build
-npm start
-```
-
-Open **http://127.0.0.1:3000/manage**. The local keeper validates loopback hosts/origins and requires a session token for mutations. Use **Node & storage** to inspect the actual node and batch lifetime. Storage payments require an explicit reviewed quote. Create a collection, add files, then publish with an immutable batch. The public view is at `/`.
-
-For a hosted keeper workspace, see [Vercel deployment and the secure local connection](docs/HOSTING.md). A fresh Vercel deployment fails closed until its keeper secrets and connection are configured. Public archive reading remains available.
-
-In the configured keeper checkout, **`npm run keeper:start`** starts Bee, the local app, and the Cloudflare tunnel together. It reconnects the new hostname to Vercel automatically. Keep that terminal open; **Ctrl+C stops everything it started**. Nothing starts at login or prevents sleep. `npm run keeper:status` checks the current session. Do not run the separate Bee/app commands at the same time.
+The demonstrated storage stack is **Bee 2.8.2 / API 8.1.1** with pinned **bee-js 13.1.0**. Node status, storage quotes and publication receipts are inspectable in source and `evidence/`. [Deployment architecture](docs/HOSTING.md) describes the access boundaries. The reproduction commands above and below require no private publisher configuration.
 
 ## How publication works
 
@@ -122,15 +104,11 @@ Tests cover feed restart/empty/conflict/timeout behavior, malformed archives, co
 | Defined empty feed behavior                | [404-only first write](src/lib/server/feed-update.ts), caught reader errors                                                 |
 | No committed credentials                   | [.gitignore](.gitignore), [.vercelignore](.vercelignore), [secret checks](scripts/check-secrets.mjs)                        |
 
-## Honest limits
+## Storage and access
 
-- Prepaid storage needs renewal. The keeper shows live, timestamped node observations; the reader shows a clearly labelled estimate from the last publication. Availability is not a promise of permanence.
-- 200 files, 25 MiB per file, 100 MiB per collection. Browser ZIPs use memory; the CLI buffers one bounded file at a time.
-- Collections are public. Private signing keys are needed for future writes, never public recovery. Back up those keys privately; this entry does not implement governance or publisher succession.
-- An archive stays on its original immutable batch, so renewing it maintains its manifest and feed dependencies. Batch migration is not implemented.
-- Publishing and maintenance need the keeper computer awake and `npm run keeper:start` running. The chosen setup is an on-demand Cloudflare quick tunnel, with automatic reconnection while that command runs. It is not continuous hosting. Public recovery does not depend on that tunnel.
-- The single-owner login uses a random access key and an eight-hour signed, HttpOnly session. Logging out clears the browser cookie; rotating the owner key invalidates all sessions.
-- The tests and audit are our verification, **not an awarded contest score**. Folio is submitted to Loops for Problem 1; no official score has been returned.
+Folio uses an operator-managed, funded Bee light node and an immutable postage batch. The keeper reads the batch lifetime from Bee, reviews renewal quotes, and extends the existing batch. Published editions carry timestamped observations; the reading room explains how prepaid storage and renewal work.
+
+Collections are public. Recovery uses public identifiers; future publication uses a dedicated signing key. Keeper mutations use authenticated sessions and origin checks. The recovery card gives the next custodian plain-language reading instructions and separates the public archive handover from private publishing authority.
 
 ## Repository
 

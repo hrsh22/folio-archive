@@ -98,6 +98,16 @@ async function openArchive(value) {
         }
       };
       info.append(h, meta, button);
+      if (file.caption) {
+        const caption = document.createElement("p");
+        caption.textContent = displayText(file.caption);
+        info.append(caption);
+      }
+      if (file.source) {
+        const source = document.createElement("p");
+        source.textContent = `Source and credit: ${displayText(file.source)}`;
+        info.append(source);
+      }
       card.append(info);
       $("files").append(card);
     }

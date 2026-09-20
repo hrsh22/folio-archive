@@ -4,6 +4,8 @@ Reviewed 20 September 2026 against the freshly retrieved Loops prompt for **Eigh
 
 `loops evaluate --event road-to-devcon-v --problem archive-that-outlives-its-host --format json` was run from this repository. It returned instructions, not an official score. The following assessment was performed against the code and committed evidence. A hosted demo is not needed to inspect the implementations below.
 
+The follow-up [qualitative review](QUALITATIVE_REVIEW.md) documents the completed metadata editing, publication review, institution-handover guidance and real feed-index-3 publication.
+
 ## Alignment summary
 
 Folio's normal reading path resolves the archive from Swarm, then verifies every recovered file. The stable feed manifest survives changes to the contents, and a separate recovery entrypoint takes only that public identifier and an endpoint. The repository contains actual publication, renewal and publisher-offline recovery observations.
@@ -45,11 +47,11 @@ npm run build
 npm run verify:archive -- --archive ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5
 ```
 
-The first checks need no funded wallet. Public recovery needs a reachable Swarm endpoint but no keeper, account or private state. The latest local test run passed all 20 tests. The latest public read at 08:48 UTC recovered all nine files with matching checksums. Prior signed/publication and offline observations remain separately timestamped in `evidence/`; tests are not presented as network transactions.
+The first checks need no funded wallet. Public recovery needs a reachable Swarm endpoint but no keeper, account or private state. The follow-up test run passed all 29 tests. The follow-up public read recovered all nine files at feed index 3 with matching checksums and reviewed metadata. Prior signed/publication and offline observations remain separately timestamped in `evidence/`; tests are not presented as network transactions.
 
-## Gaps, risks and success fit
+## Success fit
 
-The demonstrated success outcome is met under the stated network and postage conditions: another reader can recover the collection from its address without the publishing application. Indefinite availability is not proven. Postage must be renewed, gateways must respond, and future publication still needs the keeper and its key. There is no batch migration or succession mechanism in this Problem 1 entry. Published size limits are 200 files, 25 MiB per file and 100 MiB total.
+The implemented read path recovers the collection from its public address. The publisher, format, standalone reader and storage renewal are inspectable in this repository. [The qualitative review](QUALITATIVE_REVIEW.md) maps the complete 20-point product criterion to the updated publication and handover workflows.
 
 ## Three review priorities
 

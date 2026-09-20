@@ -5,6 +5,8 @@ import Link from "next/link";
 import { displayText } from "@/lib/display-text";
 import { download, sha256 } from "@/lib/browser-recovery";
 import { KeeperImage, readKeeperFile } from "./keeper-file";
+import { FileDetailsDialog } from "./file-details-dialog";
+import { PublicationReview } from "./publication-review";
 import { referenceFromInput, MAX_FILE_BYTES } from "@/lib/archive-format";
 import {
   ArrowDownToLine,
@@ -25,6 +27,7 @@ import {
   Leaf,
   LoaderCircle,
   MoreHorizontal,
+  Pencil,
   Plus,
   Radio,
   Search,
@@ -94,12 +97,18 @@ export function FolioApp() {
     error?: boolean;
   } | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
+  const [collectionReturnToReview, setCollectionReturnToReview] =
+    useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [publishOpen, setPublishOpen] = useState(false);
   const [batchId, setBatchId] = useState("");
   const [job, setJob] = useState<PublishJob | null>(null);
   const [preview, setPreview] = useState<Draft["files"][number] | null>(null);
+  const [editingFile, setEditingFile] = useState<Draft["files"][number] | null>(
+    null,
+  );
+  const [returnToReview, setReturnToReview] = useState(false);
   const [archiveInput, setArchiveInput] = useState("");
   const [days, setDays] = useState(7);
   const [quote, setQuote] = useState<Quote | null>(null);
@@ -217,9 +226,20 @@ export function FolioApp() {
     );
   }
   function create() {
+    setCollectionReturnToReview(false);
     setTitle("");
     setDescription("");
     setCreateOpen(true);
+  }
+  function closeCollectionDetails() {
+    setCreateOpen(false);
+    if (collectionReturnToReview) setPublishOpen(true);
+    setCollectionReturnToReview(false);
+  }
+  function editFile(file: Draft["files"][number], fromReview = false) {
+    setReturnToReview(fromReview);
+    if (fromReview) setPublishOpen(false);
+    setEditingFile(file);
   }
   async function upload(files: FileList | null) {
     if (!files?.length || !draft) return;
@@ -780,6 +800,7 @@ export function FolioApp() {
                 <button
                   className="text-button"
                   onClick={() => {
+                    setCollectionReturnToReview(false);
                     setTitle(draft.title);
                     setDescription(draft.description);
                     setCreateOpen(true);
@@ -833,6 +854,14 @@ export function FolioApp() {
                             ? "Image"
                             : "Document"}
                         </span>
+                        <button
+                          className="icon-button"
+                          disabled={!!busy}
+                          aria-label={`Edit details for ${displayText(file.name)}`}
+                          onClick={() => editFile(file)}
+                        >
+                          <Pencil size={14} />
+                        </button>
                         <button
                           className="icon-button"
                           disabled={!!busy}
@@ -1289,7 +1318,33 @@ export function FolioApp() {
         </div>
       )}
 
-      <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+      {editingFile && draft && (
+        <FileDetailsDialog
+          key={editingFile.id}
+          file={editingFile}
+          onClose={() => {
+            setEditingFile(null);
+            if (returnToReview) setPublishOpen(true);
+          }}
+          onSave={async (details) => {
+            await api(
+              `drafts/${draft.id}/files/${editingFile.id}`,
+              "PATCH",
+              details,
+            );
+            await refresh();
+            setNotice({
+              text: "Item details saved to the draft. Publish a new edition to share them.",
+            });
+          }}
+        />
+      )}
+      <Dialog
+        open={createOpen}
+        onOpenChange={(open) => {
+          if (!open) closeCollectionDetails();
+        }}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
@@ -1311,7 +1366,7 @@ export function FolioApp() {
                 );
                 await refresh();
                 setSelected(result.id);
-                setCreateOpen(false);
+                closeCollectionDetails();
               });
             }}
           >
@@ -1341,7 +1396,7 @@ export function FolioApp() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setCreateOpen(false)}
+                onClick={closeCollectionDetails}
               >
                 Cancel
               </Button>
@@ -1360,12 +1415,12 @@ export function FolioApp() {
           if (job?.status !== "running") setPublishOpen(open);
         }}
       >
-        <DialogContent>
+        <DialogContent className={!job ? "publication-dialog" : undefined}>
           <DialogHeader>
             <DialogTitle>
               {job?.status === "complete"
                 ? "A future on the network."
-                : "Publish your collection"}
+                : "Review your public edition"}
             </DialogTitle>
             <DialogDescription>
               {job
@@ -1450,6 +1505,19 @@ export function FolioApp() {
                   </span>
                 </div>
               </div>
+              {draft && (
+                <PublicationReview
+                  draft={draft}
+                  onEditFile={(file) => editFile(file, true)}
+                  onEditCollection={() => {
+                    setCollectionReturnToReview(true);
+                    setPublishOpen(false);
+                    setTitle(draft.title);
+                    setDescription(draft.description);
+                    setCreateOpen(true);
+                  }}
+                />
+              )}
               {!node?.ready || !usableBatches.length ? (
                 <div className="publish-warning">
                   <CircleHelp size={20} />
@@ -1486,8 +1554,8 @@ export function FolioApp() {
                     </select>
                   </div>
                   <p className="fine-print">
-                    This publishes your files publicly to Swarm. Your
-                    collection’s inventory and file checksums travel with it.
+                    Storage needs renewal. The duration shown is a current node
+                    observation, not a promise of permanent availability.
                   </p>
                   <DialogFooter>
                     <Button
@@ -1509,7 +1577,7 @@ export function FolioApp() {
                       disabled={!batchId || !!busy}
                     >
                       <Upload size={14} />
-                      Publish to Swarm
+                      Publish this public edition
                     </Button>
                   </DialogFooter>
                 </>

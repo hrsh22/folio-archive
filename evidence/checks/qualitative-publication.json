@@ -1,0 +1,215 @@
+{
+  "kind": "qualitative-publication-and-independent-recovery",
+  "observedAt": "2026-09-20T13:20:15.333Z",
+  "complete": true,
+  "archiveAddress": {
+    "format": "folio.archive-address",
+    "version": 1,
+    "archiveId": "77b9a322-61b9-40a1-b7a4-28aa35d6d0fd",
+    "owner": "56dcf5a8d4659968e8e2ecfce56cfb7f4265bfbd",
+    "topic": "58e5cf6ed9d222bc5e8bb4957c2a01e2977967e1c214b1fd0ce10dc01b83f3de",
+    "manifestReference": "ebabde0eebd602ef6e66ed4cfda2a78b62f2f2d589548a0d5e1a3d791761d0b5"
+  },
+  "previousSnapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+  "snapshot": "6acd411c117d3300a0f690e4f3d880f449a4df5e6e8743e5efdcd9d2b98b907f",
+  "feedIndex": "0000000000000003",
+  "publicationJob": "b6794f32-25f1-43f0-bff5-e6b8e589969c",
+  "sourceReceipt": "../runs/b6794f32-25f1-43f0-bff5-e6b8e589969c.json",
+  "metadata": {
+    "description": "Nine synthetic records, carefully kept. Six illustrated folio studies, a keeper’s note, provenance, and a guide for the next reader. Original demonstration artwork; these are not historical manuscripts. Successive editions share one public archive address. Item notes distinguish the synthetic artwork from historical records and identify documents retained from earlier demo editions.",
+    "files": [
+      {
+        "id": "d7dd3cce-b2f9-4a91-a492-0a3d819a04a4",
+        "name": "01 - A study in ochre.svg",
+        "caption": "Synthetic ochre folio study, first of six original demonstration illustrations. This is not a historical manuscript and its marks are not meaningful script.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "1eaf3a1f-e2d2-437f-a3b3-eb3f9539adf9",
+        "name": "02 - The indigo folio.svg",
+        "caption": "Synthetic indigo folio study, second of six original demonstration illustrations. This is not a historical manuscript and its marks are not meaningful script.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "0455a9b5-c5d9-4831-b759-3d64adc6bd14",
+        "name": "03 - Notes from the valley.svg",
+        "caption": "Synthetic folio study titled Notes from the valley, third of six original demonstration illustrations. Its title does not establish historical or geographic provenance.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "a4a9af29-3cd1-4498-9d81-c1e00b86a8ef",
+        "name": "04 - A field of small things.svg",
+        "caption": "Synthetic folio study titled A field of small things, fourth of six original demonstration illustrations. This is original demo artwork, not a historical manuscript.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "119522a2-d916-43fa-b385-7283f356f65b",
+        "name": "05 - Fragments, carefully kept.svg",
+        "caption": "Synthetic folio study titled Fragments, carefully kept, fifth of six original demonstration illustrations. No authentic manuscript fragments or meaningful script are claimed.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "f423ee28-580f-4482-ba24-5e2a23ed2fb7",
+        "name": "06 - The keeper’s index.svg",
+        "caption": "Synthetic folio study titled The keeper’s index, sixth of six original demonstration illustrations. It is demo artwork rather than a historical catalogue.",
+        "source": "Original Folio demonstration artwork, released under CC0. See 08 - Provenance.md in this collection."
+      },
+      {
+        "id": "b2af8f6b-0623-4f4c-baf8-e93c0b4a0030",
+        "name": "07 - Keeper’s note.txt",
+        "caption": "Historical demo note from the second published edition. It records a publisher restart and deliberately repeats text to exercise recovery of a file larger than one Swarm chunk. Its edition statements refer to that earlier publication.",
+        "source": "Original Folio demonstration documentation, preserved with the edition in which it was written. No historical manuscript provenance is claimed."
+      },
+      {
+        "id": "480be33b-6c73-406b-8a20-bf922ad626f7",
+        "name": "08 - Provenance.md",
+        "caption": "The provenance statement for the six synthetic illustrations. It explains that they are original demo artwork rather than historical manuscripts and releases the illustrations under CC0.",
+        "source": "Original Folio demo provenance statement, also included at public/samples/PROVENANCE.md in the repository."
+      },
+      {
+        "id": "3304e819-079c-4419-b8aa-5c2e1bc87014",
+        "name": "09 - A way back to the story.txt",
+        "caption": "Reader and recovery guide written for the third published edition. It preserves the stable archive address, independent recovery steps and renewable-storage limits. Its edition references describe that earlier publication.",
+        "source": "Original Folio demonstration documentation, preserved with the edition in which it was written. No historical manuscript provenance is claimed."
+      }
+    ]
+  },
+  "checks": {
+    "allNineItemsHaveDescriptionAndSource": true,
+    "allNamesUseHyphens": true,
+    "originalBytesAndIdentifiersUnchanged": true,
+    "samePublicAddressAndBatch": true,
+    "oneNewFeedEdition": true,
+    "beeStoppedBeforePublicRead": true,
+    "recoveryUsesPublicNetworkOnly": true,
+    "keeperHttpApiNotUsedDuringRecovery": true
+  },
+  "storage": {
+    "batchId": "c851f331b00d953d3173ef629637953b8d73018383c1c5f13388b347f2303e1e",
+    "observedAt": "2026-09-20T13:19:04.776Z",
+    "remainingSeconds": 1178848
+  },
+  "verification": {
+    "kind": "independent-recovery",
+    "observedAt": "2026-09-20T13:20:15.329Z",
+    "endpoint": "https://api.gateway.ethswarm.org",
+    "snapshot": "6acd411c117d3300a0f690e4f3d880f449a4df5e6e8743e5efdcd9d2b98b907f",
+    "feedIndex": "0000000000000003",
+    "files": [
+      {
+        "path": "files/d7dd3cce-b2f9-4a91-a492-0a3d819a04a4.svg",
+        "name": "01 - A study in ochre.svg",
+        "bytes": 61164,
+        "sha256": "16e596dbe7a25b0cded4a8da3bc60e827ead573c7e5b251270e5181b8c9b6533",
+        "verified": true
+      },
+      {
+        "path": "files/1eaf3a1f-e2d2-437f-a3b3-eb3f9539adf9.svg",
+        "name": "02 - The indigo folio.svg",
+        "bytes": 61164,
+        "sha256": "3ffd1c02b762020fc7b0937439de77918144fe6b52c9f14e45e09c016149902e",
+        "verified": true
+      },
+      {
+        "path": "files/0455a9b5-c5d9-4831-b759-3d64adc6bd14.svg",
+        "name": "03 - Notes from the valley.svg",
+        "bytes": 61169,
+        "sha256": "6411f81bc55c81c99aaa8330273ed54f6592f3f139f69bb529cd65dcab2e92b5",
+        "verified": true
+      },
+      {
+        "path": "files/a4a9af29-3cd1-4498-9d81-c1e00b86a8ef.svg",
+        "name": "04 - A field of small things.svg",
+        "bytes": 61171,
+        "sha256": "d56ac3a4fdae5e25406c94954d86825e9d25b02cbacdacb02ba4c0da6d1aa6cb",
+        "verified": true
+      },
+      {
+        "path": "files/119522a2-d916-43fa-b385-7283f356f65b.svg",
+        "name": "05 - Fragments, carefully kept.svg",
+        "bytes": 61173,
+        "sha256": "e19911ec655c74fbbf8b161460fadc0eda5d8153c251fa9777098b21d1694619",
+        "verified": true
+      },
+      {
+        "path": "files/f423ee28-580f-4482-ba24-5e2a23ed2fb7.svg",
+        "name": "06 - The keeper’s index.svg",
+        "bytes": 61168,
+        "sha256": "4763862504b5598c7bbbc9c69adcb00dcbb98ba21ebedbbd82b44228fd3966b2",
+        "verified": true
+      },
+      {
+        "path": "files/b2af8f6b-0623-4f4c-baf8-e93c0b4a0030.txt",
+        "name": "07 - Keeper’s note.txt",
+        "bytes": 6379,
+        "sha256": "24971c4e7394ed1a859185ab671d06fbe248794f9eb9bcd23c2efc20a643e381",
+        "verified": true
+      },
+      {
+        "path": "files/480be33b-6c73-406b-8a20-bf922ad626f7.md",
+        "name": "08 - Provenance.md",
+        "bytes": 183,
+        "sha256": "18cb588eb297d41603e444bdb2c53af08a3b5b1b7c92618b35ec66d7f1dc93d7",
+        "verified": true
+      },
+      {
+        "path": "files/3304e819-079c-4419-b8aa-5c2e1bc87014.txt",
+        "name": "09 - A way back to the story.txt",
+        "bytes": 1234,
+        "sha256": "cf6585c26ee8f0af6224cf7fe9945ca4db139b6213fadd38def29008931a23d6",
+        "verified": true
+      }
+    ],
+    "complete": true
+  },
+  "priorAttempts": [
+    {
+      "id": "7f9b6275-05f4-44c3-ab30-5ee73ce949ac",
+      "progress": 3,
+      "error": "A newer version exists. Open the published archive and create a fresh editing draft.",
+      "pendingWriteAbsent": true,
+      "recheckedFeedHeads": [
+        {
+          "endpoint": "http://127.0.0.1:1633",
+          "snapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+          "index": "0000000000000002",
+          "next": "0000000000000003"
+        },
+        {
+          "endpoint": "https://api.gateway.ethswarm.org",
+          "snapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+          "index": "0000000000000002",
+          "next": "0000000000000003"
+        }
+      ]
+    },
+    {
+      "id": "ca9bc70a-0736-4e6a-a0b4-def84bbfd992",
+      "progress": 60,
+      "error": "Not Found: {}",
+      "pendingWriteAbsent": true,
+      "uploadedSnapshot": "751124ada02e7fe7e920824a069d0dc3bd59d60c3c6ba00ccec357a89f155a7a",
+      "subsequentlyVerifiedPublicly": true,
+      "recheckedFeedHeads": [
+        {
+          "endpoint": "http://127.0.0.1:1633",
+          "snapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+          "index": "0000000000000002",
+          "next": "0000000000000003"
+        },
+        {
+          "endpoint": "https://api.gateway.ethswarm.org",
+          "snapshot": "d0529544339a2ad8c215cd0e47e45429edb269735cc7628004a83479ed1e7151",
+          "index": "0000000000000002",
+          "next": "0000000000000003"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All edits use the existing authenticated keeper API. The nine original file payloads are unchanged.",
+    "Two earlier attempts stopped before signing: a startup feed-head mismatch and an independent gateway propagation delay. Both local and public heads were checked before controlled retries. Only one new feed index was appended.",
+    "No batch purchase, renewal, funding or withdrawal was performed. Bee ran only for publication and was stopped before public recovery.",
+    "The local Next.js UI was still running during this programmatic recovery, but the recovery library imports no publisher or local catalogue and requests only the public Swarm gateway."
+  ]
+}

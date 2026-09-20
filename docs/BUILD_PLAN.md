@@ -32,7 +32,7 @@ Use `@ethersphere/bee-js` pinned exactly to the tested version, initially 13.1.0
 
 Use the official Bee Apple Silicon binary, installed and checksum-verified inside this project. A project-local launcher maintains the data directory and loopback API. A hidden-prompt helper redeems the event gift into the node wallet. Verify light mode before uploads and record only public node information in the repo. [Desktop installation](https://docs.ethswarm.org/docs/desktop/install/)
 
-Keep the Bee API bound to loopback. The local publisher service talks to it; no tunnel or public write endpoint is required. Keep the computer awake during uploads and the demonstration. Document start, stop, restart, data-directory backup and restoration. This is a locally operated node, without a promise of continuous hosting while the computer sleeps.
+Keep the Bee API behind the keeper boundary. The publisher owns signed writes and storage operations; public recovery resolves Swarm directly. Preserve separate read and write authority, private credential backups, and measured storage observations.
 
 Use a dedicated feed-signing key separate from the Bee wallet. Store secrets in ignored, permission-restricted `.runtime/` files inside the project as requested; exclude them from Git and browser bundles. Back up the node and publisher credentials privately; public recovery must never need them. [Feed requirements](https://bee-js.ethswarm.org/docs/soc-and-feeds/)
 

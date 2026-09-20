@@ -47,6 +47,6 @@ The API binds to loopback. Local access validates loopback host/origin and same 
 
 Remote keeper calls additionally require the server-only bridge key. On Vercel, every keeper route requires a signed, expiring, HttpOnly owner cookie; writes also validate origin and a session-derived CSRF token. The proxy supplies the bridge secret server-side. It replaces the keeper's local mutation token with the hosted session's CSRF value and never sends the bridge key to a browser. Public archive readers call neither API.
 
-The persistent local app owns all disk writes and long jobs. The cloud function only authenticates and proxies. Files travel in bounded 2 MiB parts in both directions, with idempotent retries, final SHA-256 verification and atomic inventory updates. Read [hosting details](HOSTING.md) for deployment and tunnel limitations.
+The persistent local app owns all disk writes and long jobs. The cloud function only authenticates and proxies. Files travel in bounded 2 MiB parts in both directions, with idempotent retries, final SHA-256 verification and atomic inventory updates. Read [hosting details](HOSTING.md) for deployment and access boundaries.
 
 Node and publisher secrets stay in ignored `.runtime/` with restrictive permissions. Evidence uses an explicit public-field allowlist. Public snapshots contain the reader, archive inventory and documents, never local staging metadata or private keys.

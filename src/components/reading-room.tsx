@@ -766,12 +766,12 @@ export function ReadingRoom({ reference }: { reference?: string }) {
           </DialogHeader>
           {resolved && (
             <>
-              <Label>Stable archive manifest</Label>
+              <Label>Your archive address</Label>
               <code className="public-identifier">
                 {resolved.descriptor.manifestReference}
               </code>
               <details>
-                <summary>Owner and topic · for any compatible reader</summary>
+                <summary>Technical details for another reader</summary>
                 <Label>Feed owner</Label>
                 <code className="public-identifier">
                   {resolved.descriptor.owner}
@@ -802,12 +802,28 @@ export function ReadingRoom({ reference }: { reference?: string }) {
                 variant="outline"
                 onClick={() => copy(resolved.descriptor.manifestReference)}
               >
-                <Copy size={14} /> Copy stable manifest
+                <Copy size={14} /> Copy archive address
               </Button>
               <p className="dialog-note">
                 This grants read access. Publishing rights stay with the keeper.
                 Availability still depends on funded storage and the network.
               </p>
+              <div className="publication-disclosure">
+                <strong>
+                  Moving institutions or handing over the collection?
+                </strong>
+                <p>
+                  Give the next custodian this card and a verified archive
+                  download. Ask them to open the card on another computer and
+                  check every file before you lose access to the old account.
+                </p>
+                <p>
+                  Agree who will monitor and renew storage. The card contains no
+                  signing key and does not transfer the ability to publish new
+                  editions. Keep any publishing credentials in a separate
+                  private handover.
+                </p>
+              </div>
             </>
           )}
         </DialogContent>

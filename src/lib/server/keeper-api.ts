@@ -45,6 +45,23 @@ const metadata = z.object({
   title: z.string().trim().min(1).max(120),
   description: z.string().max(4000).default(""),
 });
+// Public labels are editable; the storage path and byte identity never are.
+// Reject path-like labels rather than silently changing what a keeper reviewed.
+const fileMetadata = z
+  .object({
+    name: z
+      .string()
+      .transform((name) => name.normalize("NFC").trim())
+      .pipe(z.string().min(1).max(240))
+      .refine(
+        (name) =>
+          !/[\/\\\x00-\x1f\x7f]/.test(name) && name !== "." && name !== "..",
+        "Use a file name, without folders or control characters.",
+      ),
+    caption: z.string().trim().max(2000),
+    source: z.string().trim().max(2000),
+  })
+  .strict();
 const response = (data: unknown, status = 200) =>
   Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
 
@@ -207,6 +224,11 @@ async function handle(request: Request, segments: string[]) {
       if (action === "files" && fileId) {
         const file = draft.files.find((f) => f.id === fileId);
         if (!file) return response({ error: "File not found." }, 404);
+        if (method === "PATCH") {
+          Object.assign(file, fileMetadata.parse(await request.json()));
+          await saveDraft(draft);
+          return response(draft);
+        }
         if (method === "GET") {
           const bytes = await readFile(
             path.join(draftFolder(id), safePath(file.path)),
